@@ -1,0 +1,26 @@
+div{
+    width: 180px;
+    position: relative;
+    border-radius: 9px;
+    background-color: #f8e34b;
+    height: 180px;
+}
+div:before{
+    content: '';
+    width: 50%;
+    height: 50%;
+    background: linear-gradient(177deg, #C8C8C8 0px , transparent 9px), #EEEDEF;
+    position: absolute;
+    bottom: 0;
+    border-radius: 0 0 0 9px;
+}
+div:after{
+    content: '';
+    width: 50%;
+    height: 50%;
+    background-color: #0c0c0c;
+    position: absolute;
+    border-radius: 0 0 9px 0;
+    top: 50%;
+    left: 50%;
+}
