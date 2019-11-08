@@ -1,0 +1,1873 @@
+<!DOCTYPE html><html class=i-ua_js_no lang=ru><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><title>Яндекс</title><script nonce=6862>document.documentElement.className="i-ua_js_yes i-ua_placeholder_"+("placeholder" in document.createElement("input")?"yes":"no");(screen.deviceXDPI&&screen.logicalXDPI&&screen.deviceXDPI/screen.logicalXDPI||window.devicePixelRatio)>1&&(document.documentElement.className+=" i-ua_retina_yes");</script><link rel=search title="Яндекс" type="application/opensearchdescription+xml" href="/search/opensearch.xml"><meta name=referrer content=always><style nonce=6862 data-role=css data-stylesheet=header>/* ../../node_modules/islands/common.blocks/b-statcounter/b-statcounter.css begin */
+.b-statcounter {
+    position: absolute;
+    left: -9999px;
+}
+
+/* ../../node_modules/islands/common.blocks/b-statcounter/b-statcounter.css end */
+/* ../../node_modules/islands/common.blocks/b-page/b-page.css begin */
+/**
+     * 1. Нужно для попапов в react, где b-page вешается не на body.
+     */
+body {
+    margin: 0;
+}
+
+.b-page__body {
+    font-family: arialregular, Arial, Helvetica, sans-serif;
+}
+
+/*
+     * 1. https://st.yandex-team.ru/ISLCOMPONENTS-1653
+     * Hack for Ya.Bro on iOS 7-8 for force pointer events listening on BODY.
+     *
+     * 2. https://st.yandex-team.ru/ISL-2147
+     * Отключение выделения страницы при касании
+     */
+.i-ua_platform_ios.b-page__body {
+    cursor: pointer; /* (1) */
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* (2) */
+}
+
+/* ../../node_modules/islands/common.blocks/b-page/b-page.css end */
+/* ../../node_modules/islands/desktop.blocks/b-page/b-page.css begin */
+.b-page__body {
+    margin: 0;
+
+    font-size: .8em;
+
+    color: #000;
+    background: #fff;
+}
+
+/* ../../node_modules/islands/desktop.blocks/b-page/b-page.css end */
+/* ../../blocks-deskpad/b-page/b-page.styl begin */
+html {
+    height: 100%;
+}
+.b-page__body {
+    height: 100%;
+    padding: 0;
+    font-family: arialregular, Arial, Helvetica, sans-serif;
+}
+
+/* ../../blocks-deskpad/b-page/b-page.styl end */
+/* ../../blocks-desktop/b-page/b-page.styl begin */
+.b-page__body {
+    font-size: 13px;
+    line-height: 1.154;
+}
+.b-page.b-page_js_inited.b-page_overflow_hidden {
+    overflow: hidden;
+}
+/* чиним SERP-32985 */
+iframe[src$='ext-analytics.html'] {
+    display: none;
+}
+
+/* ../../blocks-desktop/b-page/b-page.styl end */
+/* ../../blocks-desktop/b-page/_initial-scroll/b-page_initial-scroll_yes.styl begin */
+/* Для Шапки в pre-search показываем скролл изначально, чтобы шапка не прыгала после загрузки выдачи */
+.b-page_initial-scroll_yes {
+    overflow-y: scroll;
+}
+/*
+        После того, как страница загрузилась выставляем скролл в auto.
+        В таком случае страница прыгнет только в случае, если нет результатов. Т.е. в гораздо более редких случаях.
+    */
+.b-page_initial-scroll_yes.b-page_js_inited {
+    overflow-y: auto;
+}
+/* Убирает скролл */
+.b-page_initial-scroll_yes.b-page_js_inited.b-page_overflow_yes {
+    overflow: hidden;
+}
+
+/* ../../blocks-desktop/b-page/_initial-scroll/b-page_initial-scroll_yes.styl end */
+/* ../../node_modules/@yandex-lego/serp-header/deskpad.blocks/serp-header/serp-header.css begin */
+.serp-header {
+    position: relative;
+
+    -webkit-user-select: none;
+
+    -moz-user-select: none;
+
+    -ms-user-select: none;
+
+    user-select: none;
+}
+
+.serp-header__main {
+    display: table;
+
+    -moz-box-sizing: border-box;
+
+    box-sizing: border-box;
+    width: 100%;
+    padding: 14px 20px 4px;
+
+    table-layout: fixed;
+
+    box-shadow: none !important;
+}
+
+.serp-header_head-auth_yes .serp-header__main {
+    min-width: 600px;
+
+    table-layout: auto;
+}
+
+.serp-header__under {
+    position: relative;
+}
+
+.serp-header__progress {
+    position: absolute;
+    top: 10px;
+}
+
+.serp-header__logo,
+.serp-header__search2,
+.serp-header__nav {
+    display: table-cell;
+
+    height: 39px;
+
+    vertical-align: top;
+}
+
+.serp-header__logo {
+    width: 110px;
+    min-width: 110px;
+}
+
+.serp-header__logo .logo.logo_name_ys-en-87x35 {
+    background-position: 0 3px;
+}
+
+.serp-header_head-auth_yes .serp-header__search2 {
+    width: 100%;
+}
+
+.serp-header__search2 {
+    padding-top: 3px;
+}
+
+.serp-header__nav {
+    padding-left: 20px;
+
+    text-align: right;
+    vertical-align: top;
+    white-space: nowrap;
+}
+
+.serp-header .serp-user_enter_yes,
+.serp-header .serp-user_type_enter {
+    margin-top: 3px;
+
+    vertical-align: top;
+}
+
+.serp-header__search2 .search2__input .input__control {
+    line-height: normal;
+}
+
+/* ../../node_modules/@yandex-lego/serp-header/deskpad.blocks/serp-header/serp-header.css end */
+/* ../../node_modules/@yandex-lego/serp-header/desktop.blocks/serp-header/serp-header.css begin */
+.serp-header {
+    min-height: 53px;
+}
+
+.serp-header__main {
+    height: 53px;
+    padding-bottom: 0;
+}
+
+.serp-header__wrapper {
+    position: fixed;
+
+    width: 100%;
+
+    background: #fff;
+
+    -webkit-transform: translateZ(0);
+
+    transform: translateZ(0);
+}
+
+.serp-header__search2 {
+    width: 638px;
+}
+
+.serp-header__nav {
+    position: relative;
+    z-index: 1;
+}
+
+.serp-header__progress {
+    top: 0;
+}
+
+/* ../../node_modules/@yandex-lego/serp-header/desktop.blocks/serp-header/serp-header.css end */
+/* ../../node_modules/islands/common.blocks/logo/logo.css begin */
+.logo {
+    display: inline-block;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+/**
+     * Чтобы логотип выводился при печати в Safari.
+     * Подробнее: http://stackoverflow.com/q/5949897#16322665
+     */
+@media print {
+    .logo {
+        -webkit-print-color-adjust: exact;
+    }
+}
+
+/* ../../node_modules/islands/common.blocks/logo/logo.css end */
+/* ../../node_modules/islands/common.blocks/logo/_name/logo_name_ys-ru-86x35.css begin */
+.logo_name_ys-ru-86x35 {
+    width: 86px;
+    height: 35px;
+
+    background-image: url("/static/web4/node_modules/islands/common.blocks/logo/_name/logo_name.assets/ys-ru-86x35.svg");
+}
+
+/* ../../node_modules/islands/common.blocks/logo/_name/logo_name_ys-ru-86x35.css end */
+/* ../../node_modules/islands/common.blocks/logo/_name/logo_name_ys-en-87x35.css begin */
+.logo_name_ys-en-87x35 {
+    width: 87px;
+    height: 35px;
+
+    background-image: url("/static/web4/node_modules/islands/common.blocks/logo/_name/logo_name.assets/ys-en-87x35.svg");
+}
+
+/* ../../node_modules/islands/common.blocks/logo/_name/logo_name_ys-en-87x35.css end */
+/* ../../node_modules/islands/common.blocks/logo/_type/logo_type_link.css begin */
+/**
+     * 1. В ссылку может быть помещен текст для программ
+     *    экранного доступа и SEO. Визуально его нужно убрать.
+     */
+.logo_type_link {
+    overflow: hidden;
+
+    white-space: nowrap; /*1*/
+    text-indent: 100%; /*1*/
+
+    outline: 0;
+}
+
+/* ../../node_modules/islands/common.blocks/logo/_type/logo_type_link.css end */
+/* ../../node_modules/islands/common.blocks/z-index-group/z-index-group.css begin */
+.z-index-group_level_0 {
+    z-index: 1000;
+}
+
+.z-index-group_level_1 {
+    z-index: 2000;
+}
+
+.z-index-group_level_2 {
+    z-index: 3000;
+}
+
+.z-index-group_level_3 {
+    z-index: 4000;
+}
+
+.z-index-group_level_4 {
+    z-index: 5000;
+}
+
+.z-index-group_level_5 {
+    z-index: 6000;
+}
+
+.z-index-group_level_6 {
+    z-index: 7000;
+}
+
+.z-index-group_level_7 {
+    z-index: 8000;
+}
+
+.z-index-group_level_8 {
+    z-index: 9000;
+}
+
+.z-index-group_level_9 {
+    z-index: 10000;
+}
+
+/* ../../node_modules/islands/common.blocks/z-index-group/z-index-group.css end */
+/* ../../blocks-common/z-index-group/z-index-group.styl begin */
+.z-index-group_level_10 {
+    z-index: 11000;
+}
+.z-index-group_level_11 {
+    z-index: 12000;
+}
+
+/* ../../blocks-common/z-index-group/z-index-group.styl end */
+/* ../../node_modules/islands/common.blocks/search2/search2.css begin */
+.search2 {
+    display: inline-table;
+}
+
+/* ../../node_modules/islands/common.blocks/search2/search2.css end */
+/* ../../blocks-deskpad/search2/search2.styl begin */
+.search2 {
+    max-width: 638px;
+}
+
+/* ../../blocks-deskpad/search2/search2.styl end */
+/* ../../blocks-desktop/search2/search2.styl begin */
+.search2__input .input__control {
+    font-size: 18px;
+}
+
+/* ../../blocks-desktop/search2/search2.styl end */
+/* ../../node_modules/islands/common.blocks/search2/__input/search2__input.css begin */
+.search2__input {
+    display: table-cell;
+
+    vertical-align: top; /* Чтобы выравнивать содержимое одинаково с содержимым .search2__button */
+}
+
+/* ../../node_modules/islands/common.blocks/search2/__input/search2__input.css end */
+/* ../../blocks-common/search2/__input/search2__input.styl begin */
+.search2__input {
+    width: 100%;
+    overflow: hidden;
+}
+.search2__input .input.input_theme_websearch .input__control {
+    border-right-width: 0;
+}
+.search2_theme_websearch.search2_theme_websearch .search2__input {
+    width: 100%;
+}
+
+/* ../../blocks-common/search2/__input/search2__input.styl end */
+/* ../../node_modules/islands/common.blocks/search2/__button/search2__button.css begin */
+.search2__button {
+    display: table-cell;
+}
+
+/* ../../node_modules/islands/common.blocks/search2/__button/search2__button.css end */
+/* ../../blocks-common/search2/__button/search2__button.styl begin */
+.search2__button {
+    float: none;
+}
+
+/* ../../blocks-common/search2/__button/search2__button.styl end */
+/* ../../blocks-deskpad/search2/__button/search2__button.styl begin */
+.search2__button .button2_theme_normal {
+    color: #000;
+}
+
+/* ../../blocks-deskpad/search2/__button/search2__button.styl end */
+/* ../../node_modules/islands/common.blocks/pointerevents/pointerevents.css begin */
+[touch-action=auto] {
+    -ms-touch-action: auto;
+    touch-action: auto;
+}
+
+[touch-action=pan-y] {
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+}
+
+[touch-action=pan-x] {
+    -ms-touch-action: pan-x;
+    touch-action: pan-x;
+}
+
+[touch-action="pan-x pan-y"],
+[touch-action="pan-y pan-x"] {
+    -ms-touch-action: pan-x pan-y;
+    touch-action: pan-x pan-y;
+}
+
+/* ../../node_modules/islands/common.blocks/pointerevents/pointerevents.css end */
+/* ../../node_modules/islands/common.blocks/input/input.css begin */
+.input {
+    position: relative;
+
+    display: inline-block;
+
+    width: 100%;
+}
+
+/* .input_disabled_yes нужен на случай, если внутри будут ещё элементы, кроме контрола. */
+.input_disabled_yes,
+.input_disabled_yes .input__control {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* ../../node_modules/islands/common.blocks/input/input.css end */
+/* ../../node_modules/islands/desktop.blocks/input/input.css begin */
+.input_disabled_yes .input__box,
+.input_disabled_yes .input__control {
+    cursor: default;
+}
+
+/* ../../node_modules/islands/desktop.blocks/input/input.css end */
+/* ../../node_modules/islands/common.blocks/input/__box/input__box.css begin */
+/* Обертка для нативного инпута (__control) и очищающего крестика (__clear). */
+.input__box {
+    position: relative;
+
+    display: block;
+
+    -moz-box-sizing: border-box;
+
+    box-sizing: border-box;
+
+    cursor: text;
+}
+
+.input__box:before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    padding: 0;
+
+    content: '';
+
+    background-clip: padding-box;
+}
+
+/* ../../node_modules/islands/common.blocks/input/__box/input__box.css end */
+/* ../../blocks-desktop/input/__box/input__box.styl begin */
+.input__box {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* ../../blocks-desktop/input/__box/input__box.styl end */
+/* ../../node_modules/islands/common.blocks/input/__control/input__control.css begin */
+.input__control {
+    position: relative;
+    z-index: 3;
+
+    -moz-box-sizing: border-box;
+
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    vertical-align: top;
+
+    font-size: 100%;
+
+    color: #000;
+    border: 0 solid transparent;
+    outline: 0;
+    background: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+    -webkit-appearance: none;
+}
+
+/* Лишние отступы у текста */
+.input__control::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+/* Нативный крестик */
+.input__control::-webkit-search-cancel-button {
+    display: none;
+}
+
+.input__control::-ms-clear {
+    display: none;
+}
+
+/* Сбрасываем желтый background у инпутов при автозаполнении */
+.input__control:-webkit-autofill {
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    background-clip: content-box;
+    -webkit-box-shadow: inset 0 0 0 50px #fff;
+    -webkit-text-fill-color: #000;
+}
+
+/* ../../node_modules/islands/common.blocks/input/__control/input__control.css end */
+/* ../../node_modules/islands/desktop.blocks/input/__control/input__control.css begin */
+.input__control::-webkit-input-placeholder {
+    -webkit-text-fill-color: #999;
+}
+
+/* ../../node_modules/islands/desktop.blocks/input/__control/input__control.css end */
+/* ../../blocks-common/input/__control/input__control.styl begin */
+/* TODO: убрать после SERP-34698 */
+.input__control {
+    text-overflow: clip;
+    border: 0 solid transparent;
+}
+
+/* ../../blocks-common/input/__control/input__control.styl end */
+/* ../../blocks-deskpad/input/__control/input__control.styl begin */
+.input .input__control:-webkit-autofill {
+    height: 1.4em;
+}
+
+/* ../../blocks-deskpad/input/__control/input__control.styl end */
+/* ../../blocks-desktop/input/__control/input__control.styl begin */
+.input .input__control:-webkit-autofill {
+    height: auto;
+}
+
+/* ../../blocks-desktop/input/__control/input__control.styl end */
+/* ../../node_modules/islands/common.blocks/input/__clear/input__clear.css begin */
+/* Позиционируется относительно input__box.
+     * Важно, чтобы правая граница элемента с очищающим крестиком
+     * совпадала с правой границей input__box, иначе появляется
+     * возможность кликнуть по правой границе input__box. */
+.input__clear {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    right: 0;
+
+    visibility: hidden;
+
+    margin: 0;
+    padding: 0;
+
+    pointer-events: none;
+
+    opacity: 0;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+
+    transition: visibility 0s linear .1s, opacity .1s ease-out;
+}
+
+.input_disabled_yes .input__clear {
+    display: none;
+}
+
+.input_size_xs .input__clear,
+.input_size_s .input__clear {
+    background-image: url("/static/web4/node_modules/islands/common.blocks/input/__clear/input__clear.assets/size_s.svg");
+}
+
+.input_size_m .input__clear {
+    background-image: url("/static/web4/node_modules/islands/common.blocks/input/__clear/input__clear.assets/size_m.svg");
+}
+
+/* ../../node_modules/islands/common.blocks/input/__clear/input__clear.css end */
+/* ../../blocks-common/input/__clear/input__clear.styl begin */
+.input_size_l .input__clear {
+    background-image: url("/static/web4/blocks-common/input/__clear/input__clear-l.svg");
+}
+
+/* ../../blocks-common/input/__clear/input__clear.styl end */
+/* ../../node_modules/islands/common.blocks/input/__clear/_visibility/input__clear_visibility_visible.css begin */
+.input__clear_visibility_visible {
+    visibility: visible;
+
+    cursor: pointer;
+    pointer-events: auto;
+
+    opacity: .3;
+
+    transition: opacity .1s ease-out;
+}
+
+/* ../../node_modules/islands/common.blocks/input/__clear/_visibility/input__clear_visibility_visible.css end */
+/* ../../node_modules/islands/desktop.blocks/input/__clear/_visibility/input__clear_visibility_visible.css begin */
+.input__clear_visibility_visible:hover {
+    opacity: .8;
+}
+
+/* ../../node_modules/islands/desktop.blocks/input/__clear/_visibility/input__clear_visibility_visible.css end */
+/* ../../blocks-common/input/_size/input_size_l.styl begin */
+.input_size_l {
+    font-size: 13px;
+    font-size: var(--text-m);
+}
+.input_size_l.input.input_with-icon .input__control {
+    padding-left: 15px;
+    border-left: 0;
+}
+.input_size_l .input__control {
+    padding-left: 15px;
+    border-left: 0;
+}
+/* Для ИЕ11+ делаем отступ слева с помощью border, т.к. при длинном тексте в инпуте padding игнорируется
+       https://st.yandex-team.ru/ISLCOMPONENTS-865
+    */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .input_size_l.input.input_with-icon .input__control {
+        padding-left: 0;
+        border-left: 15px solid transparent;
+    }
+}
+
+/* ../../blocks-common/input/_size/input_size_l.styl end */
+/* ../../blocks-deskpad/input/_size/input_size_l.styl begin */
+.input_size_l .input__clear {
+    width: 36px;
+}
+
+/* ../../blocks-deskpad/input/_size/input_size_l.styl end */
+/* ../../blocks-desktop/input/_size/input_size_l.styl begin */
+.input_size_l {
+    line-height: 36px;
+}
+.input_size_l .input__control,
+.input_size_l .input__hint {
+    height: 36px;
+    border-left-width: 8px;
+    border-right-width: 8px;
+}
+.input_size_l .input__clear_visibility_visible ~ .input__control {
+    border-right-width: 36px;
+}
+.input_size_l.input_clear_no .input__box {
+    border-right-width: 0;
+}
+
+/* ../../blocks-desktop/input/_size/input_size_l.styl end */
+/* ../../node_modules/islands/common.blocks/input/_size/input_size_m.css begin */
+.input_size_m {
+    font-size: 15px;
+    line-height: 32px;
+}
+
+/* Делаем отступы с помощью border, т.к. в IE10+ при длинном тексте в инпуте padding игнорируется
+       https://st.yandex-team.ru/ISLCOMPONENTS-865
+    */
+.input_size_m .input__control,
+.input_size_m .input__hint {
+    height: 32px;
+
+    border-right-width: 10px;
+    border-left-width: 10px;
+}
+
+.input_size_m .input__icon {
+    width: 32px;
+}
+
+.input_size_m .input__clear {
+    width: 32px;
+    height: 32px;
+}
+
+.input_size_m .input__icon_side_right ~ .input__clear {
+    right: 16px;
+}
+
+.input_size_m .input__clear_visibility_visible ~ .input__control {
+    border-right-width: 26px;
+}
+
+.input_size_m .input__icon_side_right ~ .input__clear_visibility_visible ~ .input__control {
+    border-right-width: 42px;
+}
+
+.input_size_m .input__icon_side_right ~ .input__control,
+.input_size_m .input__hint.input__hint_rpad_yes {
+    border-right-width: 32px;
+}
+
+.input_size_m .input__icon_side_left ~ .input__control,
+.input_size_m .input__hint.input__hint_lpad_yes {
+    border-left-width: 32px;
+}
+
+.input_size_m.input_type_textarea .input__control {
+    padding: 6px 8px 0;
+}
+
+.input_size_m.input_type_textarea .input__clear ~ .input__control {
+    padding-right: 30px;
+}
+
+/* ../../node_modules/islands/common.blocks/input/_size/input_size_m.css end */
+/* ../../node_modules/islands/desktop.blocks/input/_size/input_size_m.css begin */
+/* Если не указать line-height, в chrome выравнивание текста input не совпадает с выравниванием текста button2 */
+.input_size_m .input__control {
+    line-height: 32px;
+}
+
+/* ../../node_modules/islands/desktop.blocks/input/_size/input_size_m.css end */
+/* ../../node_modules/islands/common.blocks/input/_theme/input_theme_websearch.css begin */
+.input_theme_websearch {
+    position: relative;
+
+    font-family: arialregular, Arial, Helvetica, sans-serif;
+
+    color: #000;
+}
+
+.input_theme_websearch .input__control {
+    font-family: inherit; /* Шрифт элементов формы не наследуется автоматически. */
+}
+
+.input_theme_websearch .input__box:before {
+    content: none;
+}
+
+.input_theme_websearch:before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    content: '';
+
+    border-style: solid;
+    border-color: #ffdb4d;
+    background-color: #fff;
+    background-clip: padding-box;
+}
+
+.websearch-button__text {
+    /* background: #f00 !important; */
+}
+
+.input_theme_websearch .input__clear {
+    background-image: url("/static/web4/node_modules/islands/common.blocks/input/_theme/input_theme_websearch.assets/clear.svg");
+    background-size: 16px;
+}
+
+/* ../../node_modules/islands/common.blocks/input/_theme/input_theme_websearch.css end */
+/* ../../blocks-common/input/_theme/input_theme_websearch.styl begin */
+.input_theme_websearch {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 2px solid #ffdb4d;
+    font-family: arialregular, Arial, Helvetica, sans-serif;
+    border-right: 0;
+    border-image: none;
+}
+.input_theme_websearch.input_size_m {
+    line-height: normal;
+}
+.input_theme_websearch .input__control {
+    padding: 0;
+}
+.input_theme_websearch.input_size_m .input__clear {
+    height: 32px;
+}
+.input_theme_websearch.input_size_m .input__control {
+    border-left-width: 11px;
+}
+.input_theme_websearch:before {
+    border-width: 0;
+}
+
+/* ../../blocks-common/input/_theme/input_theme_websearch.styl end */
+/* ../../blocks-desktop/input/_indent/input_indent_small.styl begin */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .input_indent_small.input_theme_websearch.input_size_m .input__control {
+        padding-left: 0;
+        border-left-width: 9px;
+    }
+}
+
+/* ../../blocks-desktop/input/_indent/input_indent_small.styl end */
+/* ../../blocks-deskpad/input/_settings-inside/input_settings-inside_yes.styl begin */
+.input_settings-inside_yes .input__box {
+    padding-right: 62px;
+}
+.input_settings-inside_yes .input__clear {
+    right: 32px;
+}
+.input_settings-inside_yes .input__settings {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    right: 2px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: opacity 0.1s ease-out 0s;
+    opacity: 0.3;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+.input_settings-inside_yes .input__settings_type_active {
+    opacity: 0.8;
+}
+
+/* ../../blocks-deskpad/input/_settings-inside/input_settings-inside_yes.styl end */
+/* ../../blocks-desktop/input/_settings-inside/input_settings-inside_yes.styl begin */
+.input_settings-inside_yes .input__settings:hover {
+    opacity: 0.8;
+}
+
+/* ../../blocks-desktop/input/_settings-inside/input_settings-inside_yes.styl end */
+/* ../../blocks-deskpad/websearch-button/websearch-button.styl begin */
+.websearch-button {
+    display: inline-block;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+    border: 0 none;
+    outline: 0 none;
+    background: transparent;
+    border-radius: 0;
+}
+.websearch-button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+.websearch-button__text {
+    font: 16px/32px arialregular, Arial, Helvetica, sans-serif;
+    position: relative;
+    display: inline-block;
+    width: 79px;
+    margin-right: 9px;
+    padding-left: 5px;
+    color: #000;
+    border: solid #ffdb4d;
+    border-width: 2px 0;
+    background-color: #ffdb4d;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.websearch-button:active .websearch-button__text {
+    border-color: #f2cf46;
+    background-color: #f2cf46;
+}
+.websearch-button__text:before {
+    top: -6px;
+    right: -9px;
+    width: 0;
+    height: 0;
+    content: '';
+    border-width: 22px 0 22px 11px;
+    border-style: solid;
+    border-color: rgba(255,219,76,0);
+    border-left-color: inherit;
+    position: absolute;
+    z-index: -1000;
+}
+
+/* ../../blocks-deskpad/websearch-button/websearch-button.styl end */
+/* ../../blocks-desktop/serp-navigation/serp-navigation.styl begin */
+.serp-navigation {
+    min-height: 37px;
+    position: relative;
+}
+
+/* ../../blocks-desktop/serp-navigation/serp-navigation.styl end */
+/* ../../blocks-deskpad/navigation/navigation.styl begin */
+.navigation__item,
+.navigation__item .service {
+    line-height: 36px;
+    height: 36px;
+}
+.navigation__item .service {
+    position: relative;
+    display: block;
+    text-align: left;
+}
+.navigation__item .service:before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 3px;
+    content: '';
+}
+.navigation__item .service__url,
+.navigation__item .navigation__more-label,
+.navigation__item_state_selected .service {
+    display: block;
+    width: auto;
+    padding: 0 0 0 20px;
+}
+.navigation__item .navigation__more-label {
+    font-size: 13px;
+}
+.navigation__item.navigation__more {
+    display: none;
+}
+.navigation__item_state_selected .service:before {
+    background-color: #fc0;
+}
+.navigation__item .link:focus {
+    outline: 0;
+}
+.navigation__item .service_hoverable_yes:hover {
+    background: transparent;
+}
+/*
+     * Приходится перебивать стили для link, текст в левой колонке не должен
+     * подсвечиватсься красным
+     */
+.navigation__item .service_hoverable_yes .link:hover {
+    color: #999 !important;
+}
+.navigation__item.navigation__item_state_selected .service_hoverable_yes .link:hover {
+    color: #000 !important;
+}
+.navigation__item .service_hoverable_yes,
+.navigation__item .service__url,
+.navigation__item .service__url:visited {
+    color: #999;
+}
+.navigation__item.navigation__item_state_selected .service__url {
+    color: #000;
+}
+.navigation__item .service__name {
+    overflow: hidden;
+    transition: color 0.1s ease-out 0s;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.navigation__item .service__url .service__name:hover {
+    color: #000;
+}
+
+/* ../../blocks-deskpad/navigation/navigation.styl end */
+/* ../../blocks-desktop/navigation/navigation.styl begin */
+.navigation__item .service__name {
+    font-size: 13px;
+    line-height: 36px;
+}
+.navigation__item_state_selected .service {
+    z-index: 2;
+    opacity: 0;
+}
+.navigation__item_state_selected .service__name {
+    font-weight: initial;
+}
+.navigation__item:first-child .navigation__item-over {
+    text-align: left;
+}
+.navigation__item-over {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: center;
+}
+.navigation__item-over-inner {
+    padding-bottom: 10px;
+    border-bottom: 3px solid;
+}
+
+/* ../../blocks-desktop/navigation/navigation.styl end */
+/* ../../node_modules/islands/common.blocks/service/service.css begin */
+.service {
+    position: relative;
+
+    display: inline-block;
+
+    margin: 0;
+
+    text-align: center;
+
+    font-size: 15px;
+    line-height: 16px;
+}
+
+/* ../../node_modules/islands/common.blocks/service/service.css end */
+/* ../../blocks-deskpad/service/service.styl begin */
+.service {
+    font-family: arialregular, Arial, Helvetica, sans-serif;
+}
+/* Задача в лего ISLPAGE-462 */
+.service:focus {
+    outline: 0;
+}
+
+/* ../../blocks-deskpad/service/service.styl end */
+/* ../../node_modules/islands/common.blocks/service/__name/service__name.css begin */
+.service__name {
+    display: block;
+}
+
+/* ../../node_modules/islands/common.blocks/service/__name/service__name.css end */
+/* ../../node_modules/islands/common.blocks/service/__url/service__url.css begin */
+.service__url {
+    display: inline-block;
+
+    text-decoration: none;
+}
+
+/* ../../node_modules/islands/common.blocks/service/__url/service__url.css end */
+/* ../../node_modules/islands/common.blocks/link/link.css begin */
+.link {
+    text-decoration: none;
+
+    outline: 0;
+
+    -ms-touch-action: manipulation;
+
+    touch-action: manipulation;
+}
+
+.link_disabled_yes {
+    pointer-events: none;
+}
+
+/* ../../node_modules/islands/common.blocks/link/link.css end */
+/* ../../node_modules/islands/desktop.blocks/link/link.css begin */
+.link {
+    cursor: pointer;
+}
+
+.link__icon {
+    transition: opacity .15s ease-out;
+}
+
+.link_disabled_yes {
+    cursor: default;
+}
+
+/* ../../node_modules/islands/desktop.blocks/link/link.css end */
+/* ../../construct/blocks-deskpad/link/link.styl begin */
+.link {
+    color: #00c;
+}
+.b-page_tld_com-tr .link {
+    color: #1a0dab;
+}
+.link.link_hovered_yes,
+.link.link.link_hovered_yes:visited {
+    color: #d00;
+}
+.link:visited {
+    color: #551a8b;
+}
+.link:active,
+.link:visited:active {
+    color: #d00;
+}
+
+/* ../../construct/blocks-deskpad/link/link.styl end */
+/* ../../node_modules/islands/common.blocks/link/__inner/link__inner.css begin */
+.link__inner {
+    color: inherit;
+}
+
+.link__icon ~ .link__inner {
+    margin-left: 5px;
+}
+
+/* ../../node_modules/islands/common.blocks/link/__inner/link__inner.css end */
+/* ../../node_modules/islands/common.blocks/link/_theme/link_theme_normal.css begin */
+.link_theme_normal {
+    color: #04b;
+}
+
+.link_theme_normal.link_disabled_yes {
+    color: #ddd;
+}
+
+.link_theme_normal.link_disabled_yes .link__icon {
+    opacity: .5;
+}
+
+/* ../../node_modules/islands/common.blocks/link/_theme/link_theme_normal.css end */
+/* ../../node_modules/islands/deskpad.blocks/link/_theme/link_theme_normal.css begin */
+.utilityfocus.utilityfocus .link_theme_normal.link_focused_yes { /*1*/
+    outline: 2px solid #fc0;
+}
+
+/* ../../node_modules/islands/deskpad.blocks/link/_theme/link_theme_normal.css end */
+/* ../../node_modules/islands/desktop.blocks/link/_theme/link_theme_normal.css begin */
+.link_theme_normal.link_hovered_yes {
+    color: #c00;
+}
+
+.link_theme_normal.link_hovered_yes.link_disabled_yes {
+    color: #ddd;
+}
+
+/* ../../node_modules/islands/desktop.blocks/link/_theme/link_theme_normal.css end */
+/* ../../blocks-common/link/_theme/link_theme_normal.styl begin */
+.link_theme_normal {
+    color: #04b;
+}
+.b-page .link_theme_normal.link_hovered_yes {
+    color: #c00;
+}
+
+/* ../../blocks-common/link/_theme/link_theme_normal.styl end */
+/* ../../blocks-deskpad/link/_theme/link_theme_normal.styl begin */
+.link_theme_normal {
+    color: #00c;
+}
+.b-page .link_theme_normal.link_hovered_yes {
+    color: #d00;
+}
+
+/* ../../blocks-deskpad/link/_theme/link_theme_normal.styl end */
+/* ../../node_modules/islands/common.blocks/link/_theme/link_theme_outer.css begin */
+.link_theme_outer {
+    color: #070;
+}
+
+.link_theme_outer.link_disabled_yes {
+    color: #ddd;
+}
+
+.link_theme_outer.link_disabled_yes .link__icon {
+    opacity: .5;
+}
+
+/* ../../node_modules/islands/common.blocks/link/_theme/link_theme_outer.css end */
+/* ../../node_modules/islands/deskpad.blocks/link/_theme/link_theme_outer.css begin */
+.utilityfocus .link_theme_outer.link_focused_yes {
+    outline: 2px solid #fc0;
+}
+
+/* ../../node_modules/islands/deskpad.blocks/link/_theme/link_theme_outer.css end */
+/* ../../node_modules/islands/desktop.blocks/link/_theme/link_theme_outer.css begin */
+.link_theme_outer.link_hovered_yes {
+    color: #c00;
+}
+
+.link_theme_outer.link_hovered_yes.link_disabled_yes {
+    color: #ddd;
+}
+
+/* ../../node_modules/islands/desktop.blocks/link/_theme/link_theme_outer.css end */
+/* ../../construct/blocks-common/link/_theme/link_theme_outer.styl begin */
+.link_theme_outer_yes {
+    color: #070;
+    color: var(--color-green-url);
+}
+.link_theme_outer_yes:visited {
+    color: #070;
+    color: var(--color-green-url);
+}
+.b-page .link_theme_outer.link_hovered_yes,
+.b-page .link_theme_outer.link_hovered_yes:visited {
+    color: #d00;
+}
+
+/* ../../construct/blocks-common/link/_theme/link_theme_outer.styl end */
+/* ../../construct/blocks-deskpad/link/_theme/link_theme_outer.styl begin */
+/**
+     * Стили для .link_theme_outer есть в Лего, но в Турции они перебиваются нашими .b-page_tld_com-tr .link.
+     */
+.link.link_theme_outer {
+    color: #070;
+    color: var(--color-green-url);
+}
+.link.link_theme_outer:visited {
+    color: #070;
+    color: var(--color-green-url);
+}
+.b-page_tld_com-tr .link.link_theme_outer {
+    color: #070;
+    color: var(--color-green-url);
+}
+.b-page_tld_com-tr .link.link_theme_outer:visited {
+    color: #070;
+    color: var(--color-green-url);
+}
+.link.link_theme_outer.link_hovered_yes,
+.b-page_tld_com-tr .link.link_theme_outer.link_hovered_yes:visited {
+    color: #d00;
+}
+
+/* ../../construct/blocks-deskpad/link/_theme/link_theme_outer.styl end */
+/* ../../blocks-common/link/_ghost/link_ghost_yes.styl begin */
+.link_ghost_yes.link_ghost_yes {
+    color: #999;
+}
+
+/* ../../blocks-common/link/_ghost/link_ghost_yes.styl end */
+/* ../../construct/blocks-common/link/_ghost/link_ghost_yes.styl begin */
+.link_ghost_yes,
+.link_ghost_yes:visited {
+    color: #999;
+}
+.link_ghost_yes.link_hovered_yes,
+.link_ghost_yes.link_hovered_yes:visited {
+    color: #d00;
+}
+
+/* ../../construct/blocks-common/link/_ghost/link_ghost_yes.styl end */
+/* ../../construct/blocks-deskpad/link/_ghost/link_ghost_yes.styl begin */
+.b-page_tld_com-tr .link_ghost_yes,
+.b-page_tld_com-tr .link_ghost_yes:visited {
+    color: #999;
+}
+.link_ghost_yes.link_hovered_yes {
+    color: #d00;
+}
+
+/* ../../construct/blocks-deskpad/link/_ghost/link_ghost_yes.styl end */
+/* ../../construct/blocks-common/link/_black/link_black_yes.styl begin */
+.link.link_black_yes,
+.link.link_black_yes:visited {
+    color: #000;
+}
+.link_black_yes.link_hovered_yes,
+.link_black_yes.link_hovered_yes:visited {
+    color: #d00;
+}
+
+/* ../../construct/blocks-common/link/_black/link_black_yes.styl end */
+/* ../../node_modules/islands/common.blocks/link/_theme/link_theme_pseudo.css begin */
+.link_theme_pseudo {
+    color: #04b;
+}
+
+.link_theme_pseudo.link_disabled_yes {
+    color: #ddd;
+}
+
+.link_theme_pseudo.link_disabled_yes .link__icon {
+    opacity: .5;
+}
+
+.link_theme_pseudo .link__inner {
+    border-bottom: 1px dotted; /* Цвет наследуется от текста. */
+}
+
+/* ../../node_modules/islands/common.blocks/link/_theme/link_theme_pseudo.css end */
+/* ../../node_modules/islands/deskpad.blocks/link/_theme/link_theme_pseudo.css begin */
+.utilityfocus .link_theme_pseudo.link_focused_yes {
+    outline: 2px solid #fc0;
+}
+
+/* ../../node_modules/islands/deskpad.blocks/link/_theme/link_theme_pseudo.css end */
+/* ../../node_modules/islands/desktop.blocks/link/_theme/link_theme_pseudo.css begin */
+.link_theme_pseudo.link_hovered_yes {
+    color: #c00;
+}
+
+.link_theme_pseudo.link_hovered_yes.link_disabled_yes {
+    color: #ddd;
+}
+
+/* ../../node_modules/islands/desktop.blocks/link/_theme/link_theme_pseudo.css end */
+/* ../../blocks-common/link/_theme/link_theme_pseudo.styl begin */
+.link_theme_pseudo {
+    color: #04b;
+}
+.b-page .link_theme_pseudo.link_hovered_yes {
+    color: #c00;
+}
+
+/* ../../blocks-common/link/_theme/link_theme_pseudo.styl end */
+/* ../../blocks-deskpad/link/_theme/link_theme_pseudo.styl begin */
+.link_theme_pseudo {
+    color: #00c;
+}
+.b-page .link_theme_pseudo.link_hovered_yes {
+    color: #d00;
+}
+
+/* ../../blocks-deskpad/link/_theme/link_theme_pseudo.styl end */
+/* ../../construct/blocks-common/link/_nowrap/link_nowrap_yes.styl begin */
+.link_nowrap_yes {
+    white-space: nowrap;
+}
+
+/* ../../construct/blocks-common/link/_nowrap/link_nowrap_yes.styl end */
+/* ../../blocks-desktop/navigation/_more-type/navigation_more-type_slide.styl begin */
+.navigation_more-type_slide .navigation__item_extra_hidden + .navigation__more,
+.navigation_more-type_slide .navigation__item_extra_visible + .navigation__more {
+    display: block;
+}
+.navigation_more-type_slide .navigation__more-label:hover {
+    color: #000;
+}
+.navigation_more-type_slide .navigation__item_extra_hidden,
+.navigation_more-type_slide .navigation__item_extra_visible,
+.navigation_more-type_slide .navigation__more {
+    overflow: hidden;
+    transition: opacity 0s, visibility 0s, height 0.08s;
+}
+.navigation_more-type_slide .navigation__item_extra_visible {
+    overflow: visible;
+}
+.navigation_more-type_slide .navigation__item_extra_hidden,
+.navigation_more-type_slide .navigation__more {
+    visibility: hidden;
+    height: 0;
+    padding: 0;
+    transition-duration: 0.3s, 0.3s, 0.1s;
+    opacity: 0;
+}
+.navigation_more-type_slide .navigation__item_extra_visible,
+.navigation_more-type_slide .navigation__more_visibility_visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* ../../blocks-desktop/navigation/_more-type/navigation_more-type_slide.styl end */
+/* ../../blocks-desktop/navigation/_type/navigation_type_horizontal.styl begin */
+.navigation_type_horizontal {
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+    height: 41px;
+    margin-bottom: 0;
+    padding-left: 130px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    box-shadow: 0 1px rgba(0,0,0,0.1);
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    background-color: #fff;
+}
+.navigation_type_horizontal .navigation__region {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    max-height: 100%;
+}
+.navigation_type_horizontal .navigation__item .service::before {
+    display: none;
+}
+.navigation_type_horizontal .navigation__item,
+.navigation_type_horizontal .navigation__more {
+    font-size: 14px;
+    line-height: 40px;
+    position: relative;
+    height: auto;
+    display: inline-block;
+    padding: 0;
+    vertical-align: middle;
+}
+.navigation_type_horizontal .navigation__item .service,
+.navigation_type_horizontal .navigation__more .service {
+    font-size: inherit;
+    line-height: inherit;
+    display: block;
+    height: 40px;
+    padding: 0;
+}
+.navigation_type_horizontal .navigation__item .service.navigation__more-label,
+.navigation_type_horizontal .navigation__more .service.navigation__more-label {
+    padding: 0 8px;
+}
+.navigation_type_horizontal .navigation__item .service__name,
+.navigation_type_horizontal .navigation__more .service__name {
+    font-size: inherit;
+    line-height: inherit;
+    display: inherit;
+    padding: 0 4px;
+}
+.navigation_type_horizontal .navigation__item .service__url,
+.navigation_type_horizontal .navigation__more .service__url {
+    display: inherit;
+    margin: 0 4px;
+    padding: 0;
+    color: #999;
+    text-decoration: none;
+}
+.navigation_type_horizontal .navigation__item .service__url:visited,
+.navigation_type_horizontal .navigation__more .service__url:visited {
+    color: #999;
+}
+.navigation_type_horizontal .navigation__item .service_hoverable_yes,
+.navigation_type_horizontal .navigation__more .service_hoverable_yes {
+    color: #999;
+}
+.navigation_type_horizontal .navigation__item .service__url .service__name:hover,
+.navigation_type_horizontal .navigation__more .service__url .service__name:hover {
+    color: #c00;
+}
+.navigation_type_horizontal .navigation__item_state_selected,
+.navigation_type_horizontal .navigation__more_state_selected {
+    padding: 0;
+    font-weight: bold;
+}
+.navigation_type_horizontal .navigation__item_state_selected .service__name,
+.navigation_type_horizontal .navigation__more_state_selected .service__name {
+    display: inline;
+    padding: 0;
+    margin: 0 8px;
+    position: relative;
+}
+.navigation_type_horizontal .navigation__item_state_selected .service__name::after,
+.navigation_type_horizontal .navigation__more_state_selected .service__name::after {
+    position: absolute;
+    bottom: -13px;
+    left: 0;
+    display: block;
+    width: 100%;
+    content: '';
+    border-top: 3px solid #000;
+}
+.navigation_type_horizontal .navigation__item_state_selected .service__url,
+.navigation_type_horizontal .navigation__more_state_selected .service__url {
+    color: #000;
+    margin-right: 0;
+    margin-left: 0;
+}
+.navigation_type_horizontal .navigation__item_state_selected .service__url:visited,
+.navigation_type_horizontal .navigation__more_state_selected .service__url:visited,
+.navigation_type_horizontal .navigation__item_state_selected .service__url .service__name:hover,
+.navigation_type_horizontal .navigation__more_state_selected .service__url .service__name:hover {
+    color: #000;
+}
+.navigation_type_horizontal .navigation__item_state_selected .service::before,
+.navigation_type_horizontal .navigation__more_state_selected .service::before {
+    content: none;
+}
+.navigation_type_horizontal .navigation__item_extra_hidden,
+.navigation_type_horizontal .navigation__more_extra_hidden {
+    overflow: hidden;
+    width: 0;
+    padding: 0;
+}
+.navigation_type_horizontal .navigation__item:first-child .service__url,
+.navigation_type_horizontal .navigation__more:first-child .service__url {
+    margin-left: 0;
+}
+.navigation_type_horizontal .navigation__item:first-child .service__name,
+.navigation_type_horizontal .navigation__more:first-child .service__name {
+    font-weight: 400;
+    margin-left: 2px;
+    padding-left: 0;
+}
+.navigation_type_horizontal .navigation__more {
+    height: auto;
+    cursor: pointer;
+}
+.navigation_type_horizontal .navigation__more .navigation__more-label:hover {
+    color: #c00;
+}
+.navigation_type_horizontal.navigation_more-type_slide .navigation__item_extra_hidden + .navigation__more,
+.navigation_type_horizontal.navigation_more-type_slide .navigation__item_extra_visible + .navigation__more {
+    display: inline-block;
+}
+.navigation_type_horizontal.navigation_more-type_slide .navigation__item_extra_hidden + .navigation__more_visibility_hidden,
+.navigation_type_horizontal.navigation_more-type_slide .navigation__item_extra_visible + .navigation__more_visibility_hidden {
+    display: none;
+}
+.navigation_type_horizontal.navigation_more-type_slide.navigation_more-button_hidden .navigation__more,
+.navigation_type_horizontal.navigation_more-type_slide.navigation_more-button_hidden .navigation__item_extra_hidden + .navigation__more,
+.navigation_type_horizontal.navigation_more-type_slide.navigation_more-button_hidden .navigation__item_extra_visible + .navigation__more {
+    display: none;
+}
+
+/* ../../blocks-desktop/navigation/_type/navigation_type_horizontal.styl end */
+</style><link rel="shortcut icon" href="//yastatic.net/iconostasis/_/8lFaTHLDzmsEZz-5XaQg9iTWZGE.png"><body class="b-page b-page_tld_ru b-page_ajax_yes b-page_initial-scroll_yes b-page_tmpl_xjst i-device-info user-location-updater typo typo_text_m typo_line_m serp-metrika b-page__body i-global i-ua i-device-info user-location-updater typo typo_text_m typo_line_m serp-metrika i-bem" data-bem='{"b-page":{"yabro":false,"isFontDecoderEnabled":true},"i-device-info":{},"user-location-updater":{"delay":0,"period":900,"counters":{"on":["690.781.10"],"off":["690.781.11"],"granted":["690.781.2031"],"denied":["690.781.2032"],"prompt":["690.781.2033"],"new":["690.781.228"],"old":["690.781.713"],"unknown":["690.781.836"]}},"serp-metrika":{"counter":"731962"},"i-global":{"lang":"ru","tld":"ru","content-region":"ru","click-host":"//localhost:3443/clck","passport-host":"https://passport.yandex.ru","pass-host":"https://pass.yandex.ru","social-host":"https://social.yandex.ru","export-host":"//export.yandex.ru","login":"","lego-static-host":"/static/web4/","nonce":"6862","framebuster":[],"reqid":"1531737579018914-553112913363586339529598-sas1-5628","shownResult":-1,"pg":null,"pid":"","uid":"","id":"www","retpath":"https://localhost:3443/search/?text=%D0%B1%D0%BB%D0%B8%D1%86&amp;lr=146&amp;ncrnd=10450","yandexuid":"4358633951531737579","query":"блиц","static-host":"/static/web4/","ajaxUrl":"//localhost:3443/search/","ugcUpdateUrl":"/search/ugcupdate","geoanswer":"/search/geoanswer","serpRequestExtraParams":{},"lr":146,"rlr":146,"isCounterHeights":true,"sk":"y9bda32977bbaf845021386415cd10c9d","noMda":false,"disableNoopener":false,"fastAjax":1,"baobabAjax":1,"enableRequestIdHeader":false,"maxAjaxUrlLength":2092},"i-ua":{}}' data-log-node=izcv><script nonce=6862>/* borschik:nowrap */
+// Инициализация пространства имён Ya
+window.Ya = window.Ya || {};
+
+// Записываем время начала загрузки страницы
+Ya.startPageLoad = Date.now();
+
+// Создаем глобальный список ошибок
+Ya.jserrors = [];
+
+/**
+ * Минимальный скрипт сбора ошибок.
+ *
+ * Логгирует непойманные ошибки в Ya.jserrors.
+ *
+ * Предполагается, что в post-search будет добавлен полноценный скрипт,
+ * в котором эти ошибки будут отправлены на сервер (см. i-counters__error).
+ */
+Ya.onerror = function() {
+    // сохраняем ошибки для их последующей отправки на сервер
+    Ya.jserrors.push(arguments);
+};
+
+/**
+ * Cкрипт сбора ошибок. Вызывает Ya.onerror.
+ */
+window.onerror = function() {
+    Ya.onerror.apply(null, arguments);
+};
+var _borschik=function(h){return!(h in _borschik)&&(_borschik[h]=!0)};/* borschik:nowrap */
+/* ../../../../node_modules/@yandex-int/rum-counter/dist/inline/interface.js begin */
+if(_borschik('jAu6P')) {
+    /**
+     * @file
+     * Интерфейс счётчиков скорости. Этот код должен быть помещён раньше элемента implementation.
+     *
+     * Код оптимизирован для минимального размера после uglify + gzip.
+     */
+    (function(window, undefined) {
+        window.Ya = window.Ya || {};
+
+        /**
+         * @typedef {number|string} BlockStatID – ключ из словаря https://stat.yandex-team.ru/DictionaryEditor/BlockStat
+         */
+
+        if (Ya.Rum) {
+            throw new Error('Rum: interface is already defined');
+        }
+
+        var perf = window.performance;
+        var navStart = (perf && perf.timing && perf.timing.navigationStart) || Ya.startPageLoad || +new Date();
+        var requestAnimationFrame = window.requestAnimationFrame;
+
+        Ya.Rum = {
+            // флаг для проверки работоспособности счетчика
+            enabled: !!perf,
+
+            // Видимость документа в начале загрузки
+            vsStart: document.visibilityState,
+
+            // Менялась ли видимость документа document.visibilityState в процессе загрузки
+            vsChanged: false,
+
+            // список временных меток для дальнейшей отправки
+            _defTimes: [],
+
+            // список меток ресурсов для дальнейшей отправки
+            _defRes: [],
+
+            // список рассчитанных с помощью time()..timeEnd() дельт
+            _deltaMarks: {},
+
+            /**
+             * Настройки RUM
+             *
+             * @typedef {Object} RUMSettings
+             * @property {Boolean} beacon - Есть ли поддержка beacon API.
+             * @property {String} clck - Хост clck (e.g. https://yandex.ru/clck/click).
+             * @property {Array<String>} slots - Список слотов/групп, в которые попал текущий пользователь.
+             * @property {String} reqid - Request ID запроса.
+             */
+            _settings: {},
+
+            /**
+             * Произвольные параметры, пробрасываемые в логи.
+             *
+             * @typedef {Object<BlockStatID, String|BlockStatID>} Vars – Объект с параметрами
+             * @example
+             * {
+             *     "143": "28.1786",
+             *     "1042": "Example%20User%20Agent%201.0"
+             * }
+             */
+            _vars: {},
+
+            /**
+             * Инициализация интерфейса.
+             *
+             * @param {RUMSettings} settings – Настройки RUM
+             * @param {Vars} vars
+             */
+            init: function(settings, vars) {
+                this._settings = settings;
+                this._vars = vars;
+            },
+
+            /**
+             * Получить время от начала навигации.
+             *
+             * @returns {Number}
+             */
+            getTime: (perf && perf.now) ? function() {
+                return perf.now();
+            } : Date.now ? function() {
+                return Date.now() - navStart;
+            } : function() {
+                return new Date - navStart;
+            },
+
+            /**
+             * Записывает время старта расчёта дельты.
+             *
+             * @param {String} counterId - Код BlockStat. ID метки времени
+             */
+            time: function(counterId) {
+                this._deltaMarks[counterId] = [this.getTime()];
+            },
+
+            /**
+             * Записывает время окончания расчёта дельты.
+             * При загрузке RUM implementation записанные метрики будут отправлены на бэкэнд.
+             *
+             * @param {String} counterId - Код BlockStat. ID метки времени
+             */
+            timeEnd: function(counterId) {
+                var deltaMarks = this._deltaMarks,
+                    deltaTimes = deltaMarks[counterId];
+
+                if (!deltaTimes || deltaTimes.length === 0) {
+                    return;
+                }
+
+                deltaTimes.push(this.getTime());
+            },
+
+            /**
+             * Отправить счетчик с временной меткой.
+             *
+             * @param {String} counterId Код BlockStat. ID метки времени
+             * @param {Number} [time] - Время. Если не передано, вычисляется время
+             *     от начала навигации до момента вызова функции
+             * @param {Boolean} [addPerfMark=true] - Добавлять метку в User Timing или нет, true по умолчанию
+             * @param {Object} [params=null] - Кастомные параметры счетчика. Сюда же можно передать инстанс подстраницы
+             */
+            sendTimeMark: function(counterId, time, addPerfMark, params) {
+                if (time === undefined) {
+                    time = this.getTime();
+                }
+                this._defTimes.push([counterId, time, params]);
+                this.mark(counterId, time);
+            },
+
+            /**
+             * Заглушка отправки временных меток ресурса,
+             * откладывает отправку до загрузки основного кода.
+             *
+             * @param {String|Number} counterId
+             * @param {String} url
+             */
+            sendResTiming: function(counterId, url) {
+                this._defRes.push([counterId, url]);
+            },
+
+            /**
+             * Отправить тайминги requestAnimationFrame.
+             *
+             * @param {String|Number} position – blockStat-код позиции счётчика, например 85 – p0
+             */
+            sendRaf: function(position) {
+                if (!requestAnimationFrame || this.isVisibilityChanged()) {
+                    return;
+                }
+
+                var that = this,
+                    prefix = '2616.' + position; // raf_metric.p0
+
+                requestAnimationFrame(function() {
+                    if (that.isVisibilityChanged()) {
+                        return;
+                    }
+                    that.sendTimeMark(prefix + '.205'); // raf_metric.p0.first
+
+                    requestAnimationFrame(function() {
+                        if (that.isVisibilityChanged()) {
+                            return;
+                        }
+                        that.sendTimeMark(prefix + '.1928'); // raf_metric.p0.last
+                    });
+                });
+            },
+
+            /**
+             * Проверяет, изменялась ли видимость страницы при загрузке.
+             *
+             * @returns {Boolean}
+             */
+            isVisibilityChanged: function() {
+                return this.vsStart && (this.vsStart !== 'visible' || this.vsChanged);
+            },
+
+            /**
+             * Поставить метку времени в User Timing https://www.w3.org/TR/user-timing/#dom-performance-mark
+             * В браузерах, не поддерживающих window.performance.mark(), заменяется ничего не делающей заглушкой.
+             *
+             * @param {String} name - Код BlockStat. ID метки времени
+             * @param {Number} [time] - Время. Опционально, нужно для сверки со временем, которое ставит
+             *     само User Timing API, или для меток, которые ставятся "задним числом" (ttfb, ttfp etc.)
+             */
+            mark: perf && perf.mark ? function(name, time) {
+                perf.mark(name + (time ? ': ' + time : ''));
+            } : function() {
+                // заглушка
+            }
+        };
+
+        // Отслеживаем изменения видимости вкладки
+        function onVisibilityChange() {
+            Ya.Rum.vsChanged = true;
+            document.removeEventListener('visibilitychange', onVisibilityChange);
+        }
+
+        if (document.addEventListener) {
+            document.addEventListener('visibilitychange', onVisibilityChange);
+        }
+    })(window);
+}
+
+/* ../../../../node_modules/@yandex-int/rum-counter/dist/inline/interface.js end */
+
+Ya.Rum.init({},{"143":"28.1034.153","287":146});/* borschik:nowrap */
+/* ../../../../node_modules/@yandex-int/rum-counter/dist/inline/longtask.js begin */
+if(_borschik('MRfbH')) {
+    (function () {
+        'use strict';
+
+        /**
+         * @file
+         * Сохраняет времена блокировки основного потока js
+         * https://github.com/GoogleChrome/tti-polyfill
+         * this snippet is a temporary workaround, until browsers implement level 2 of the Performance Observer spec and include the buffered flag.
+         */
+        if (window.PerformanceLongTaskTiming) {
+            var MAX_EVENTS_COUNT = 100,
+                inst = Ya.Rum._tti = {
+                    /**
+                     * Массив последних событий longtask, количество ограничено числом MAX_EVENTS_COUNT
+                     */
+                    events: [],
+
+                    observer: new PerformanceObserver(function(tasks) {
+                        inst.events = inst.events.concat(tasks.getEntries());
+
+                        if (inst.events.length > MAX_EVENTS_COUNT) {
+                            inst.events.shift();
+                        }
+                    })
+                };
+
+            inst.observer.observe({
+                entryTypes: ['longtask']
+            });
+        }
+
+    }());
+}
+
+/* ../../../../node_modules/@yandex-int/rum-counter/dist/inline/longtask.js end */
+
+/* borschik:nowrap */
+/* ../../../../node_modules/@yandex-int/rum-counter/dist/inline/io.js begin */
+if(_borschik('c4rIK')) {
+    (function () {
+        'use strict';
+
+        /**
+         * @file
+         * Функция для определения момента времени, когда была отрисована DOM-нода
+         * @depends interface.js
+         */
+
+        /**
+         * Определяет момент времени от начала навигации, когда была отрисована DOM-нода.
+         * Если вместо ссылки на DOM-ноду передана строка селектора, то время будет определено с точностью до 100мс
+         * (интервал проверок на появление элемента в DOM).
+         *
+         * @param {String|Number} counterID - Код BlockStat. ID метки времени
+         * @param {HTMLElement|String} target - DOM-нода, за видимостью которой надо смотреть
+         *     ИЛИ CSS-селектор для получения ноды
+         * @param {Object} [ioOptions] - Опции для IntersectionObserver
+         */
+        Ya.Rum.observeDOMNode = window.IntersectionObserver ? function(counterID, target, ioOptions) {
+            var that = this;
+
+            function check() {
+                if (that.isVisibilityChanged()) {
+                    return;
+                }
+
+                var domNode = (typeof target === 'string') ?
+                    document.querySelector(target) :
+                    target;
+
+                if (domNode) {
+                    (new IntersectionObserver(function(entries, observer) {
+                        if (that.isVisibilityChanged()) {
+                            return;
+                        }
+
+                        Ya.Rum.sendTimeMark(counterID);
+                        observer.unobserve(domNode);
+                    }, ioOptions)).observe(domNode);
+                } else {
+                    setTimeout(check, 100);
+                }
+            }
+
+            check();
+        } : function() {
+            // заглушка
+        };
+
+    }());
+}
+
+/* ../../../../node_modules/@yandex-int/rum-counter/dist/inline/io.js end */
+
+</script><div class="serp-header serp-header_head-auth_yes serp-header_yaplus_yes serp-header_favorites_yes z-index-group z-index-group_level_9 i-bem" data-bem='{"serp-header":{"live":true}}' role=banner><div class=serp-header__wrapper><script nonce=6862>Ya.Rum.sendRaf(183)</script><div class="progress serp-header__progress i-bem" data-bem='{"progress":{}}'></div><div class=serp-header__main><div class=serp-header__logo><a class="logo logo_type_link logo_name_ys-ru-86x35" href="//yandex.ru/" tabindex=-1 data-counter="[&quot;w&quot;,&quot;175.179&quot;]" data-log-node=izcw>Яндекс</a></div><div class=serp-header__search2><form class="search2 serp suggest2-form suggest2-form_extra-popup_yes suggest2-counter suggest2-form__node suggest2-form__node_extra-popup-id_main-search-suggest i-bem" data-bem='{"search2":{"ajaxKey":"search2__ajax"},"serp":{"uniqId":"search"},"suggest2-form":{"popupName":"popup2","buttonName":"websearch-button"},"suggest2-counter":{"service":"serp_ru_desktop","submitBySelect":true,"suggestReqID":true,"host":"//yandex.ru","path":"/clck/jclck/","params":{"dtype":"stred","pid":0,"cid":2873},"preventSubmit":false}}' role=search action="/search/" aria-label="Поиск в интернете"><div class=search2__input><span class="input input_size_m input_theme_websearch input_indent_small input_settings-inside_yes input_autofocus_yes serp suggest2-form__input i-bem" data-bem='{"input":{"ajaxKey":"search2__input","shortcut":true,"counterClear":["183.477"],"live":false},"serp":{"uniqId":"search"}}' data-log-node=izcx><span class=input__box><span class="input__clear input__clear_visibility_visible" unselectable=on data-log-node=izcy> </span><input class=input__control id=uniq15317374597985 name=text value="блиц" aria-labelledby="labeluniq15317374597985 hintuniq15317374597985" aria-label="Запрос" type=search accesskey=s maxlength=400 data-log-node=izcz><span class=input__settings unselectable=on title="Расширенный поиск" aria-label="Расширенный поиск" role=button></span></span><input type=hidden name=lr value=146></span></div><div class=search2__button><button class="websearch-button suggest2-form__button" role=button type=submit tabindex=-1><div class=websearch-button__text>Найти</div></button></div></form></div><div class=serp-header__nav><span class=serp-header__header-favorites-button-container></span><span class=serp-header__yaplus-container></span></div></div></div></div><div class="serp-navigation z-index-group z-index-group_level_8"><div class="navigation navigation_update-queries_yes navigation_more-type_slide navigation_type_horizontal serp i-bem" data-bem='{"navigation":{},"serp":{"uniqId":"search"}}' data-log-node=izd0 role=navigation aria-label="Найти также"><div class=navigation__region role=list><div class="navigation__item navigation__item_service_yes navigation__item_name_www navigation__item_state_selected" data-log-node=izd1><div class="service service_hoverable_yes service_name_www"><a class="service__url link link_target_vertical-service link_service-link_yes link link_theme_normal i-bem" data-bem='{"link":{"service":"www"}}' href="//yandex.ru" data-counter="[&quot;w&quot;,&quot;471.208.72&quot;]" data-log-node=izd2><span class=service__name>Поиск</span></a></div><div class=navigation__item-over><span class=navigation__item-over-inner>Поиск</span></div></div><div class="navigation__item navigation__item_service_yes navigation__item_name_images" data-log-node=izd3><div class="service service_hoverable_yes service_name_images"><a class="service__url link link_target_vertical-service link_service-link_yes link link_theme_normal i-bem" data-bem='{"link":{"service":"images"}}' target=_blank href="//yandex.ru/images/search?text=%D0%B1%D0%BB%D0%B8%D1%86&amp;parent-reqid=1531737579018914-553112913363586339529598-sas1-5628" data-counter="[&quot;w&quot;,&quot;471.208.277&quot;]" data-log-node=izd4><span class=service__name>Картинки</span></a></div></div><div class="navigation__item navigation__item_service_yes navigation__item_name_video" data-log-node=izd5><div class="service service_hoverable_yes service_name_video"><a class="service__url link link_target_vertical-service link_service-link_yes link link_theme_normal i-bem" data-bem='{"link":{"service":"video"}}' target=_blank href="//yandex.ru/video/search?text=%D0%B1%D0%BB%D0%B8%D1%86&amp;parent-reqid=1531737579018914-553112913363586339529598-sas1-5628" data-counter="[&quot;w&quot;,&quot;471.208.231&quot;]" data-log-node=izd6><span class=service__name>Видео</span></a></div></div><div class="navigation__item navigation__item_service_yes navigation__item_name_maps" data-log-node=izd7><div class="service service_hoverable_yes service_name_maps"><a class="service__url link link_target_vertical-service link_service-link_yes link link_theme_normal i-bem" data-bem='{"link":{"service":"maps"}}' target=_blank href="//yandex.ru/maps/?text=%D0%B1%D0%BB%D0%B8%D1%86&amp;source=serp_navig" data-counter="[&quot;w&quot;,&quot;471.208.23&quot;]" data-log-node=izd8><span class=service__name>Карты</span></a></div></div><div class="navigation__item navigation__item_service_yes navigation__item_name_market" data-log-node=izd9><div class="service service_hoverable_yes service_name_market"><a class="service__url link link_target_vertical-service link_service-link_yes link link_theme_normal i-bem" data-bem='{"link":{"service":"market"}}' target=_blank href="//market.yandex.ru/search.xml?clid=521&amp;text=%D0%B1%D0%BB%D0%B8%D1%86&amp;cvredirect=2" data-counter="[&quot;w&quot;,&quot;471.208.4&quot;]" data-log-node=izda><span class=service__name>Маркет</span></a></div></div><div class="navigation__item navigation__item_service_yes navigation__item_name_news" data-log-node=izdb><div class="service service_hoverable_yes service_name_news"><a class="service__url link link_target_vertical-service link_service-link_yes link link_theme_normal i-bem" data-bem='{"link":{"service":"news"}}' target=_blank href="//news.yandex.ru/yandsearch?text=%D0%B1%D0%BB%D0%B8%D1%86&amp;rpt=nnews2&amp;grhow=clutop" data-counter="[&quot;w&quot;,&quot;471.208.3&quot;]" data-log-node=izdc><span class=service__name>Новости</span></a></div></div><div class="navigation__item navigation__item_service_yes navigation__item_name_translate" data-log-node=izdd><div class="service service_hoverable_yes service_name_translate"><a class="service__url link link_target_vertical-service link_service-link_yes link link_theme_normal i-bem" data-bem='{"link":{"service":"translate"}}' target=_blank href="//translate.yandex.ru/?text=%D0%B1%D0%BB%D0%B8%D1%86" data-counter="[&quot;w&quot;,&quot;471.208.575&quot;]" data-log-node=izde><span class=service__name>Переводчик</span></a></div></div><div class="navigation__item navigation__item_service_yes navigation__item_name_music" data-log-node=izdf><div class="service service_hoverable_yes service_name_music"><a class="service__url link link_target_vertical-service link_service-link_yes link link_theme_normal i-bem" data-bem='{"link":{"service":"music"}}' target=_blank href="//music.yandex.ru/search?text=%D0%B1%D0%BB%D0%B8%D1%86" data-counter="[&quot;w&quot;,&quot;471.208.56&quot;]" data-log-node=izdg><span class=service__name>Музыка</span></a></div></div><div class="navigation__item navigation__item_service_yes navigation__item_name_disk navigation__item_extra_hidden" data-log-node=izdh><div class="service service_hoverable_yes service_name_disk"><a class="service__url link link_target_vertical-service link_service-link_yes link link_theme_normal i-bem" data-bem='{"link":{"service":"disk"}}' target=_blank href="//disk.yandex.ru" data-counter="[&quot;w&quot;,&quot;471.208.1032&quot;]" data-log-node=izdi><span class=service__name>Диск</span></a></div></div><div class="navigation__item navigation__item_service_yes navigation__item_name_mail navigation__item_extra_hidden" data-log-node=izdj><div class="service service_hoverable_yes service_name_mail"><a class="service__url link link_target_vertical-service link_service-link_yes link link_theme_normal i-bem" data-bem='{"link":{"service":"mail"}}' target=_blank href="//mail.yandex.ru" data-counter="[&quot;w&quot;,&quot;471.208.176&quot;]" data-log-node=izdk><span class=service__name>Почта</span></a></div></div><div class="navigation__item navigation__item_service_yes navigation__item_name_all navigation__item_extra_hidden" data-log-node=izdl><div class="service service_hoverable_yes service_name_all"><a class="service__url link link_target_vertical-service link_service-link_yes link link_theme_normal i-bem" data-bem='{"link":{"service":"all"}}' target=_blank href="//yandex.ru/all?text=%D0%B1%D0%BB%D0%B8%D1%86" data-counter="[&quot;w&quot;,&quot;471.208.136&quot;]" data-log-node=izdm><span class=service__name>Все</span></a></div></div><div class="navigation__more navigation__more_visibility_visible navigation__item" data-log-node=izdn data-counter="[&quot;w&quot;,&quot;471.208.75&quot;]"><div class="navigation__more-label service service_hoverable_yes" role=button title="Ещё" aria-label="Ещё">Ещё</div></div></div></div></div><style nonce=6862 data-role=css data-stylesheet=main>/* ../../blocks-common/css-const/__common/css-const__common.css begin */
+:root {
+    --color-link: #04b;
+    --color-link-visited: #909;
+    --color-link-active: #d00;
+    --color-link-minor: #669;
+
+    --color-black: #000;
+    --color-grey: #999;
+    --color-white: #fff;
+    --color-action: #fc0;
+
+    /*
+         *  Цвета
+         */
+    --color-blue-link: #00c;
+    --color-grey-link: #669;
+    --color-black-text: #333;
+    --color-grey-text: #999;
+    --color-green-url: #070;
+    --color-arrow: #fc0;
+    --color-arrow-active: #f2cf46;
+    --color-border: rgba(0, 0, 0, .1);
+    --color-selection: #ffeba0;
+    --color-red-hover: #d00;
+    --color-neowhite: #f3f1ed;
+
+    /*
+         * Стандартные размеры скругления уголков
+         */
+    --size-border-radius-m: 4px;
+}
+
+/* ../../blocks-common/css-const/__common/css-const__common.css end */
+/* ../../blocks-desktop/css-const/__common/css-const__common.css begin */
+:root {
+    /*
+         * Типографика. Значения переменных --text-*, --typo-*, --font-* заданы для каждой платформы: desktop, touch-pad,
+         * touch-phone. Переменные для неиспользуемых сочетаний (например, --text-s-line-l) и абстрактные определения на
+         * common-уровне были удалены в https://st.yandex-team.ru/SERP-63502 для уменьшения размера CSS. Если станет
+         * необходима одна из отсутствующих констант - нужно просто завести её для трёх указанных платформ.
+         */
+    --text-s: 11px;
+    --text-s-line-m: 15px;
+
+    --text-m: 13px;
+    --text-m-line-s: 16px;
+    --text-m-line-m: 17px;
+    --text-m-line-l: 1em;
+
+    --text-l: 18px;
+    --text-l-line-s: 1em;
+    --text-l-line-m: 24px;
+
+    --text-xl: 28px;
+    --text-xl-line-m: 32px;
+
+    --typo-caps: 11px;
+
+    --typo-greenurl: 14px;
+    --typo-greenurl-line-height: 17px;
+
+    --font-regular: arialregular, Arial, Helvetica, sans-serif;
+}
+
+/* ../../blocks-desktop/css-const/__common/css-const__common.css end */
+/* ../../node_modules/islands/common.blocks/button2/button2.css begin */
+/**
+     * 1. Значения padding и margin каждый браузер выставляет по-своему – сбрасываем в ноль
+...
