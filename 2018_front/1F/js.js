@@ -47,34 +47,32 @@ function getMarkdown(data){
 
     let objectReady = takeApart(data);
 
-    function getTask(task, tab){
-        return `${tab} ${task.title}\n`;
-    }
-
-    let result = '## Задачи\n';
+    let result = '## Задачи\n\n';
 
     for(let task of objectReady.tasks){
-        let arr = [];
+        result += `- ${task.title}`;
 
         if(task.assignee != null)
-            arr.push(`делает ${task.assignee.login}`);
+            result += `, делает ${task.assignee.login}`;
 
         if(task.spectators.length)
-            arr.push(`наблюдают: ${ task.spectators.reduce((r, c) => {return !r.length ? `${c.login}` : `${r}, ${c.login}`; }, '') }`);
+            result += `, наблюдают: ${ task.spectators.reduce((r, c) => {return !r.length ? `${c.login}` : `${r}, ${c.login}`; }, '') }`;
 
-        if(task.assignee == null && !task.spectators.length){
-            result += `- ${task.title}\n`;
-        } else {
-            result += `- ${task.title}, ${arr.join(', ')}\n`;
-        }
+        result += `\n`;
     }
 
-    result += '## Пользователи\n';
+    result += '\n';
+
+    result += '## Пользователи\n\n';
 
     for(let user of objectReady.users){
         result += `- ${user.login}\n`;
         for(let task of user.tasks){
-            result += `${getTask(task, '  *')}`;
+            result += `  * ${task.title}\n`;
+            for(let subtask of task.subtasks){
+                result += `  * ${subtask.title}\n`;
+
+            }
         }
     }
 
