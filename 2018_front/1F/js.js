@@ -1,4 +1,4 @@
-function detour(top){
+function detour(top, strategy){
     let queue = [],
         queueVisit = new Set();
 
@@ -7,49 +7,26 @@ function detour(top){
     while (queue.length){
         let item = queue.shift();
 
-        switch (item.type) {
-            case 'user':
-                for(let task of item.spectating)
-                    if(!queueVisit.has(task))
-                        queue.push(task);
+        strategy[item.type](item, (e) => {
+            if(!e) return;
 
-                for(let task of item.tasks)
-                    if(!queueVisit.has(task))
-                        queue.push(task);
-
-                break;
-            case 'task':
-                if(item.parent && !queueVisit.has(item.parent))
-                    queue.push(item.parent);
-
-                if(item.assignee && !queueVisit.has(item.assignee))
-                    queue.push(item.assignee);
-
-                for(let user of item.spectators)
-                    if(!queueVisit.has(user))
-                        queue.push(user);
-
-                for(let subtask of item.subtasks)
-                    if(!queueVisit.has(subtask))
-                        queue.push(subtask);
-
-                break;
-        }
+            for(let i of [].concat(e))
+                if(!queueVisit.has(i))
+                    queue.push(i);
+        });
 
         queueVisit.add(item);
     }
 
-    return Array.from(queueVisit)
-        .filter(f => {
-            if('parent' in f && f.parent)
-                return false;
+    let line = Array.from(queueVisit);
 
-            return true;
-        });
+    return Object.keys(strategy).map(m => {
+        return line.filter(f => f.type == m);
+    });
 }
 
-const sortUser = (a, b) => a.login < b.login ? -1 : 1;
-const sortTask = (a, b) => a.title < b.title ? -1 : 1;
+const sortUser = (a, b) => a.login < b.login ? -1 : (a.login == b.login ? 0 : 1);
+const sortTask = (a, b) => a.title < b.title ? -1 : (a.title == b.title ? 0 : 1);
 
 const getTaskArr = (task) => {
     return {
@@ -60,25 +37,28 @@ const getTaskArr = (task) => {
     };
 };
 
-const getTaskLine = (task) => {
-    let line = `${task.title}`;
+const getTaskLine = (task, allInfo = true) => `${
+        task.title
+    }${
+        task.assignee && allInfo ? `, делает ${task.assignee}` : ''
+    }${
+        task.spectators.length && allInfo ? `, наблюдают: ${task.spectators.map(m => m).join(', ')}` : ''
+    }`;
 
-    if(task.assignee != null)
-        line += `, делает ${task.assignee}`;
-
-    if(task.spectators.length)
-        line += `, наблюдают: ${ task.spectators.reduce((r, c) => {return !r.length ? `${c}` : `${r}, ${c}`; }, '') }`;
-
-    line += `\n`;
-
-    return line;
-};
-
-function getBlockTask(tasks, str){
+const renderTask = (tasks, str, isTab = true, allInfo = true) => {
     let r = '';
     for(let task of tasks){
-        r += `${str} ${getTaskLine(task)}`;
-        r += getBlockTask(task.subtasks, `  ${str}`);
+        r += `${str} ${getTaskLine(task, allInfo)}\n`;
+        r += renderTask(task.subtasks, `${isTab ? '  ' : ''}${str}`, isTab, allInfo);
+    }
+    return r;
+}
+
+const renderUser = (users) => {
+    let r = '';
+    for(let user of users){
+        r += `- ${user.login}\n`;
+        r += `${renderTask(user.tasks, '  *', false, false)}`;
     }
     return r;
 }
@@ -90,12 +70,20 @@ function getBlockTask(tasks, str){
  * @return {string}
  */
 function getMarkdown(data){
-    let objectReady = detour(data);
+    let [users, tasks] = detour(data, {
+        user: (e, fn) => {
+            fn(e.spectating);
+            fn(e.tasks);
+        },
+        task: (e, fn) => {
+            fn(e.parent);
+            fn(e.assignee);
+            fn(e.spectators);
+            fn(e.subtasks);
+        }
+    });
 
-    if(!objectReady.length) return '';
-
-    let users = objectReady.filter(f => f.type == 'user')
-        .sort(sortUser)
+    users.sort(sortUser)
         .map(m => {
             return {
                 login: m.login,
@@ -105,43 +93,30 @@ function getMarkdown(data){
             }
         });
 
-    let tasks = objectReady.filter(f => f.type == 'task')
+    tasks = tasks
+        .filter(f => !f.parent)
         .sort(sortTask)
         .map(getTaskArr);
 
     let result = '';
 
-    if(tasks.length){
-        result += '## Задачи\n\n';
-        result += getBlockTask(tasks, '-');
-        result += '\n';
-    }
+    if(tasks.length)
+        result += `## Задачи\n\n${renderTask(tasks, '-')}\n`;
 
     if(users.length)
-        result += '## Пользователи\n\n';
-
-    for(let user of users){
-        result += `- ${user.login}\n`;
-        for(let task of user.tasks){
-            result += `  * ${task.title}\n`;
-            for(let subtask of task.subtasks){
-                result += `  * ${subtask.title}\n`;
-
-            }
-        }
-    }
+        result += `## Пользователи\n\n${renderUser(users)}`;
 
     return result;
 }
 
 // Пользователи в памяти
-const User1 = { type: 'user', login: 'fedor', tasks: [], spectating: [] };
-const User2 = { type: 'user', login: 'arkady', tasks: [], spectating: [] };
+const User1 = { type: 'user', login: 'fedor(User1)', tasks: [], spectating: [] };
+const User2 = { type: 'user', login: 'arkady(User2)', tasks: [], spectating: [] };
 
 // Задачи в памяти
-const Task1 = { type: 'task', title: 'Do something', assignee: null, spectators: [], subtasks: [], parent: null };
-const Task2 = { type: 'task', title: 'Something else', assignee: null, spectators: [], subtasks: [], parent: null };
-const Task3 = { type: 'task', title: 'Sub task', assignee: null, spectators: [], subtasks: [], parent: null };
+const Task1 = { type: 'task', title: 'Do something(Task1)', assignee: null, spectators: [], subtasks: [], parent: null };
+const Task2 = { type: 'task', title: 'Something else(Task2)', assignee: null, spectators: [], subtasks: [], parent: null };
+const Task3 = { type: 'task', title: 'Sub task(Task3)', assignee: null, spectators: [], subtasks: [], parent: null };
 
 // И связи между ними:
 // Первую задачу делает первый пользователь
@@ -157,8 +132,8 @@ Task2.spectators.push(User1);
 User1.spectating.push(Task2);
 
 // Третья задача является подзадачей второй
-Task3.parent = Task2;
-Task2.subtasks.push(Task3);
+Task3.parent = Task1;
+Task1.subtasks.push(Task3);
 
 // Известно, что последняя изменённая структура - задача 3
 const lastEdited = Task3;
