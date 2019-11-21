@@ -147,7 +147,4 @@ User3.spectating.push(Task1);
 Task4.parent = Task3;
 Task3.subtasks.push(Task4);
 
-setTimeout(() => {
-    //console.log(detour(lastEdited));
-    console.log(getMarkdown(lastEdited));
-}, 500);
+console.log(getMarkdown(lastEdited));
