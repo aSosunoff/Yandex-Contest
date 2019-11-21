@@ -37,19 +37,19 @@ const getTaskArr = (task) => {
     };
 };
 
-const getTaskLine = (task, allInfo = true) => `${
+const getTaskLine = (task) => `${
         task.title
     }${
-        task.assignee && allInfo ? `, делает ${task.assignee}` : ''
+        task.assignee ? `, делает ${task.assignee}` : ''
     }${
-        task.spectators.length && allInfo ? `, наблюдают: ${task.spectators.map(m => m).join(', ')}` : ''
+        task.spectators.length ? `, наблюдают: ${task.spectators.map(m => m).join(', ')}` : ''
     }`;
 
-const renderTask = (tasks, str, isTab = true, allInfo = true) => {
+const renderTask = (tasks, str) => {
     let r = '';
     for(let task of tasks){
-        r += `${str} ${getTaskLine(task, allInfo)}\n`;
-        r += renderTask(task.subtasks, `${isTab ? '  ' : ''}${str}`, isTab, allInfo);
+        r += `${str} ${getTaskLine(task)}\n`;
+        r += renderTask(task.subtasks, `  ${str}`);
     }
     return r;
 }
@@ -57,8 +57,8 @@ const renderTask = (tasks, str, isTab = true, allInfo = true) => {
 const renderUser = (users) => {
     let r = '';
     for(let user of users){
-        r += `- ${user.login}\n`;
-        r += `${renderTask(user.tasks, '  *', false, false)}`;
+        r += `\n- ${user.login}`;
+        r += `${user.tasks.map(m => `\n  * ${m.title}`).join('')}`;
     }
     return r;
 }
@@ -104,7 +104,7 @@ function getMarkdown(data){
         result += `## Задачи\n\n${renderTask(tasks, '-')}\n`;
 
     if(users.length)
-        result += `## Пользователи\n\n${renderUser(users)}`;
+        result += `## Пользователи\n${renderUser(users)}`;
 
     return result;
 }
@@ -151,40 +151,3 @@ setTimeout(() => {
     //console.log(detour(lastEdited));
     console.log(getMarkdown(lastEdited));
 }, 500);
-
-// const top1 = { login: '1', tasks: [], parent: null };
-// const top2 = { login: '2', tasks: [], parent: null };
-// const top3 = { login: '3', tasks: [], parent: null };
-// const top4 = { login: '4', tasks: [], parent: null };
-// const top5 = { login: '5', tasks: [], parent: null };
-// const top6 = { login: '6', tasks: [], parent: null };
-//
-// top1.tasks.push(top2);
-// top1.tasks.push(top3);
-// top2.parent = top1;
-// top3.parent = top1;
-//
-// top2.tasks.push(top4);
-// top2.tasks.push(top5);
-// top4.parent = top2;
-// top5.parent = top2;
-//
-// top3.tasks.push(top6);
-// top6.parent = top3;
-//
-// function detour(top){
-//     let queue = [],
-//         queueVisit = [];
-//     queue.push(top);
-//
-//     while (queue.length){
-//
-//         let item = queue.shift();
-//         item.tasks.forEach(e => {
-//             queue.push(e);
-//         });
-//         queueVisit.push(item);
-//     }
-//     debugger;
-//     return queueVisit;
-// }
