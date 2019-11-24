@@ -1,4 +1,4 @@
-## Сами на Yandex [Задачи](https://contest.yandex.ru/hiring/contest/10824/enter/)
+## Сами на Yandex 2018 Год [Задачи](https://contest.yandex.ru/hiring/contest/10824/enter/)
 
 ## 1A. Межгалактическая связь
 

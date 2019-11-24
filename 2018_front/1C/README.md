@@ -1,3 +1,5 @@
+## Сами на Yandex 2018 Год [Задачи](https://contest.yandex.ru/hiring/contest/10824/enter/)
+
 ## 1C. Картинка с заданной вариативностью
 
 ![](/2018_front/1C/statement-image.png)
