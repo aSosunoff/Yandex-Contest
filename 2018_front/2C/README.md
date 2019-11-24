@@ -1,4 +1,4 @@
-## Сами на Yandex 2018 Год [Задачи](https://contest.yandex.ru/hiring/contest/10824/enter/)
+## Сами [Задачи](https://contest.yandex.ru/hiring/contest/10824/enter/) на Yandex 2018 Год
 
 ## 2C. Картинка с заданной вариативностью
 
