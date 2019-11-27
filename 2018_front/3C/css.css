@@ -2,6 +2,6 @@ div{
     width: 180px;
     height: 120px;
     border: 1px #efefef solid;
-    background-image: linear-gradient(145deg, #0054b9 0px 80px, #fff 75px 85px, #ffdb4d 85px 115px, #fff 115px 120px, #f00 120px 200px, green);
+    background-image: linear-gradient(145deg, #0054b9 0% 35%, transparent 35% 40%, #ffdb4d 40% 60%, transparent 60% 65%, #f00 65% 100%, #fff);
     position: relative;
 }
