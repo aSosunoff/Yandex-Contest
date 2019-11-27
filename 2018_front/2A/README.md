@@ -40,7 +40,7 @@ DUN 'Ej QAD Je pAtLh TLhOQ Ta'tA 494 PuS WoVBe' SICh HuD,|ta 494
 
 В качестве решения предоставьте функцию следующего вида:
 
-```
+```javaScript
 /** @returns string */  
 module.exports = function(inputString) {  
    // ваш код здесь  

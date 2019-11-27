@@ -18,15 +18,15 @@
 
 Ваше решение должно содержать функцию, соответствующую следующей сигнатуре:
 
-```params 
-@param container {Node} ссылка на DOM-node, в которую нужно вписать строку ‘str‘  
-@param str {string} строка, которую необходимо вписать. Максимальная длина равняется 100 символам  
-@param min {number} минимальный размер шрифта (целое число, min >= 1)  
-@param max {number} максимальный размер шрифта (целое число, max >= min >= 1)  
-@return {number | null} искомый размер шрифта (целое число) или null, если текст вписать нельзя  
-```
+```javaScript 
+/**
+ * @param container {Node} ссылка на DOM-node, в которую нужно вписать строку ‘str‘  
+ * @param str {string} строка, которую необходимо вписать. Максимальная длина равняется 100 символам  
+ * @param min {number} минимальный размер шрифта (целое число, min >= 1)  
+ * @param max {number} максимальный размер шрифта (целое число, max >= min >= 1)  
+ * @return {number | null} искомый размер шрифта (целое число) или null, если текст вписать нельзя  
+ */
 
-```func
 function calcFontSize(container, str, min, max) {  
   // ваш код  
 }
@@ -42,7 +42,7 @@ function calcFontSize(container, str, min, max) {
 
 и таких входных параметров
 
-```
+```javaScript
 calcFontSize(document.getElementById("container"), "Топ-10 jQuery-плагинов недели", 10, 100)
 ```
 
