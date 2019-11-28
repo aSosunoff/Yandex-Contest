@@ -1,22 +1,21 @@
 /***
- * @param container {Node} ссылка на DOM-node, в которую нужно вписать строку ‘str‘
- * @param str {string} строка, которую необходимо вписать. Максимальная длина равняется 100 символам
- * @param min {number} минимальный размер шрифта (целое число, min >= 1)
- * @param max {number} максимальный размер шрифта (целое число, max >= min >= 1)
- * @return {number | null} искомый размер шрифта (целое число) или null, если текст вписать нельзя
+ * @param container {Node} ссылка на DOM-node контейнера
+ * @param str {string} строка с текстом предупреждения
+ * @param min {number} минимальное значение letter-spacing (целое число)
+ * @param max {number} максимальное значение letter-spacing (целое число)
+ * @return {number} значение letter-spacing (целое число, px) или null, если поместить предупреждение не удаётся
  */
-function calcFontSize(container, str, min, max) {
+function getLetterSpacing (container, str, min, max) {
     if(!container) return null;
 
     if(!(str && str.length <= 100
         && Number.isInteger(min)
         && Number.isInteger(max)
-        && min >= 1
         && max >= min))
         return null;
 
     const check = size => {
-        container.style.setProperty('font-size', `${size}px`, 'important');
+        container.style.setProperty('letter-spacing', `${size}px`, 'important');
         const {height, width} = container.getBoundingClientRect();
         return container.scrollWidth <= width && container.scrollHeight <= height;
     };
@@ -26,12 +25,12 @@ function calcFontSize(container, str, min, max) {
     if(!check(min)) return null;
     if(check(max)) return max;
 
-    const getNewSize = (l, r) => Math.round((r + l) / 2);
+    const getNewLetterSpacing = (l, r) => Math.round((r + l) / 2);
 
     let l = min;
     let r = max;
     while(l < r - 1){
-        let m = getNewSize(l, r);
+        let m = getNewLetterSpacing(l, r);
 
         if(check(m))
             l = m;
@@ -43,4 +42,4 @@ function calcFontSize(container, str, min, max) {
 }
 
 
-calcFontSize(document.getElementById("container"), "1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111", 10, 100)
+getLetterSpacing (document.getElementById("container"), "ПРОГРАММИРОВАНИЕ НА JS МОЖЕТ БЫТЬ ОПАСНО ДЛЯ ЗДОРОВЬЯ", 5, 20)
