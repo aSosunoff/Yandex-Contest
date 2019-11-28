@@ -1,10 +1,30 @@
+div:before{
+    content: ' ';
+    position: absolute;
+    width: 215px;
+    height: 134px;
+    background-color: #ffdb4d;
+    outline: 1px rgba(255, 255, 255, .5) dashed;
+    z-index: -1;
+    box-shadow: 0px 0px 0px 4px #ffdb4d;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    border: 1px rgba(0,0,0,.3) dashed;
+    box-sizing: border-box;
+    outline-offset: 0px;
+}
+
 div{
     width: 223px;
     height: 142px;
     position: relative;
-    background-color: #ffdb4d;
-    outline: 1px rgba(0, 0, 0, .3) dashed;
-    outline-offset: -4px; 
+    background:
+            radial-gradient(circle at 0 0, #fff 9px, transparent 0px) top left no-repeat,
+            radial-gradient(circle at 100% 0, #fff 9px, transparent 0px) top right no-repeat,
+            radial-gradient(circle at 100% 100%, #fff 9px, transparent 0px) bottom right no-repeat,
+            radial-gradient(circle at 0 100%, #fff 9px, transparent 0px) bottom left no-repeat;
+    background-size: 50% 50%;
 }
 
 div:after{
@@ -15,19 +35,6 @@ div:after{
     background-color: #fff;
     width: 12px;
     height: 12px;
-    left: 6%;
+    left: 18px;
     transform: translate(-50%, -50%);
-}
-
-div:before{
-    content: ' ';
-    position: absolute;
-    width: 223px;
-    height: 142px;
-    background: 
-        radial-gradient(circle at 0 0, #fff 9px, transparent 0px) top left no-repeat,
-        radial-gradient(circle at 100% 0, #fff 9px, transparent 0px) top right no-repeat, 
-        radial-gradient(circle at 100% 100%, #fff 9px, transparent 0px) bottom right no-repeat, 
-        radial-gradient(circle at 0 100%, #fff 9px, transparent 0px) bottom left no-repeat;
-    background-size: 50% 50%;
 }
