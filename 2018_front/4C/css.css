@@ -1,0 +1,25 @@
+div{
+    width: 223px;
+    height: 142px;
+    position: relative;
+    background: 
+        radial-gradient(circle at 0 0, #fff 9px, #ffdb4d 0px) top left no-repeat,
+        radial-gradient(circle at 100% 0, #fff 9px, #ffdb4d 0px) top right no-repeat, 
+        radial-gradient(circle at 100% 100%, #fff 9px, #ffdb4d 0px) bottom right no-repeat, 
+        radial-gradient(circle at 0 100%, #fff 9px, #ffdb4d 0px) bottom left no-repeat;
+    background-size: 50% 50%;
+    outline: 1px rgba(0, 0, 0, .3) dashed;
+    outline-offset: -4px;
+}
+
+div:after{
+    content: ' ';
+    position: absolute;
+    top: 50%;
+    border-radius: 100%;
+    background-color: #fff;
+    width: 12px;
+    height: 12px;
+    left: 6%;
+    transform: translate(-50%, -50%);
+}
