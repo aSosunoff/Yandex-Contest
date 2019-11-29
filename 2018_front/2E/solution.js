@@ -1,37 +1,42 @@
 function getKeyboard(){
-    return Array.from(document.getElementsByClassName('key'))
-        .reduce((r, e) => {
-            let n = getComputedStyle(e, ':before')
-                    .content
-                    .replace(/"/g,''),
-                k = null;
-            switch (n) {
-                case 'call': k = 9; break;
-                case '0': k = 10; break;
-                default: k = --n;
-            }
-            r[k] = e;
-            return r;
-        },{});
+    return Array.from(document.getElementsByClassName('key'));
 }
 
-function getPhoneNumber(){
-    let buttons = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "call", "zero"];
-    return Array.prototype.slice.call(document.querySelectorAll('.game .target .symbol:not(.separator)'))
+function getNotes(){
+    let buttons = [
+        "C1", "D1 flat",
+        "D1", "E1 flat",
+        "E1",
+        "F1", "G1 flat",
+        "G1", "A1 flat",
+        "A1", "H1 flat",
+        "H1",
+        "C2", "D2 flat",
+        "D2", "E2 flat",
+        "E2",
+        "F2", "G2 flat",
+        "G2", "A2 flat",
+        "A2", "H2 flat",
+        "H2"];
+    return Array.from(document.querySelectorAll('.game .target .symbol:not(.separator)'))
         .map(e => {
-            return buttons.indexOf(e.classList[1]);
+            let key = [e.classList[1], e.classList[2]].filter(f => f).join(' ');
+            return buttons.indexOf(key);
         });
 }
 
 let keyArray = getKeyboard();
 
-let phones = getPhoneNumber()
+let notes = getNotes();
 
-const call = () => {
-    let event = new Event('click');
-    keyArray[phones.shift()].dispatchEvent(event);
-    if(phones.length)
-        setTimeout(call, 100);
+let event = new Event('click');
+
+const run = () => {
+    let el = keyArray[notes.shift()];
+
+    el.dispatchEvent(event);
+    if(notes.length)
+        setTimeout(run, 100);
 };
 
-call();
+run();
