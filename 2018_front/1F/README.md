@@ -78,6 +78,7 @@ module.exports = function (data) {
 ```
 
 **Примеры**
+
 // Пользователи в памяти
 ```javaScript
 const User1 = { type: ’user’, login: ’fedor’, tasks: [], spectating: [] };
