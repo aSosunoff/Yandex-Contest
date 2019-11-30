@@ -19,7 +19,7 @@ function getNotes(){
         "A2": 21, "H2 flat": 22,
         "H2": 23
     };
-debugger;
+
     return Array.prototype.slice.call(document.querySelectorAll('.game .target .symbol:not(.separator)'))
         .map(e => {
             let key = [e.classList[1], e.classList[2]].filter(f => f).join(' ');
