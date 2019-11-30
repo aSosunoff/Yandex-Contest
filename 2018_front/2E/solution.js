@@ -1,42 +1,44 @@
 function getKeyboard(){
-    return Array.from(document.getElementsByClassName('key'));
+    return Array.prototype.slice.call(document.getElementsByClassName('key'));
 }
 
 function getNotes(){
-    let buttons = [
-        "C1", "D1 flat",
-        "D1", "E1 flat",
-        "E1",
-        "F1", "G1 flat",
-        "G1", "A1 flat",
-        "A1", "H1 flat",
-        "H1",
-        "C2", "D2 flat",
-        "D2", "E2 flat",
-        "E2",
-        "F2", "G2 flat",
-        "G2", "A2 flat",
-        "A2", "H2 flat",
-        "H2"];
-    return Array.from(document.querySelectorAll('.game .target .symbol:not(.separator)'))
+    let buttons = {
+        "C1": 0, "D1 flat": 1,
+        "D1": 2, "E1 flat": 3,
+        "E1": 4,
+        "F1": 5, "G1 flat": 6,
+        "G1": 7, "A1 flat": 8,
+        "A1": 9, "H1 flat": 10,
+        "H1": 11,
+        "C2": 12, "D2 flat": 13,
+        "D2": 14, "E2 flat": 15,
+        "E2": 16,
+        "F2": 17, "G2 flat": 18,
+        "G2": 19, "A2 flat": 20,
+        "A2": 21, "H2 flat": 22,
+        "H2": 23
+    };
+debugger;
+    return Array.prototype.slice.call(document.querySelectorAll('.game .target .symbol:not(.separator)'))
         .map(e => {
             let key = [e.classList[1], e.classList[2]].filter(f => f).join(' ');
-            return buttons.indexOf(key);
+            return buttons[key];
         });
 }
 
-let keyArray = getKeyboard();
+const keyArray = getKeyboard();
 
-let notes = getNotes();
-
-let event = new Event('click');
+const notes = getNotes();
 
 const run = () => {
     let el = keyArray[notes.shift()];
 
-    el.dispatchEvent(event);
+    el.dispatchEvent(new Event('click'));
     if(notes.length)
         setTimeout(run, 100);
 };
 
-run();
+window.onload = function() {
+    run();
+}
