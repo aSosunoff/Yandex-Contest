@@ -1,18 +1,47 @@
-// /** @returns string */
-// function solve(inputString){
-//     let find = Array.from(inputString.matchAll(/ta['’](?<name>so|ko|ta|qa|goo)\s*(?<number>\d+)/ig));
+/** @returns Array<string>|null */  
+function solve(inputString){
+    let arr = inputString.split(', ');
 
-//     if(find && find.length == 1){
-//         let res = find[0];
+    let _word = '[А-Я][а-я]{2,7}',
+    _digit = '[0-9~$]',
+    _name = 'Сёб|Рёб|Моб|Сян|Рян|Ман',
+    _surname = 'Сё|Рё|Мо|Ся|Ря|Ма|Сю|Рю|Му';
+    
+    let _a = `^${_word}(?:[ -]${_word})?$`,
+    _b = `^(?:${_digit}{3})$|^(?:${_digit}{2}-${_digit}{2})$`,
+    _c = `^(?:${_surname}) (?:${_name})?`;
 
-//         return `${res.groups.name} ${res.groups.number}`.toLowerCase();
-//     }
+    let validAddress = [_a, _a, _a, _b, _c]; 
+    
+    let resultArray = [];
 
-//     return '0';
-// }
-// //Ta’gh ta’So 29 jE yin
-// //^.*ta['’](?<name>so|ko|ta|qa|goo)\\s*(?<number>\\d+).*$
-// setTimeout(() => {
-//     console.log(solve('DUN \'Ej QAD Je pAtLh TLhOQ Ta\'ta 23 PuS WoVBe\' SICh HuD,'));
-//     //console.log(solve('Ta\'gh ta\'so 23 jE yin'));
-// }, 500)
+    let i = 0;
+    arr.forEach(element => {
+        while(i < 5){
+            let rule = validAddress[i];
+            let data = element.match(rule);
+    
+            if(data){
+                resultArray.push(data[0]);
+                i++;
+                break;
+            }
+            resultArray.push(null);
+            i++;
+        }
+    });
+    
+    if(resultArray.every(e => e == null))
+        return null;
+
+    return resultArray;
+}
+
+setTimeout(() => {
+    //console.log(solve('Старый Оскол, Бравый, Слон, 12-34, Му Рян'));
+    //console.log(solve('Старый Оскол, Бравый, Слон, 123, Му Рян'));
+    //console.log(solve('Старый Оскол, Бравый, Му Рян'));
+    //console.log(solve('Старый Оскол, Бравый, Му Рян'));
+    //console.log(solve('Старый, Оскол-Бравый, Му Рян'));
+    console.log(solve('Старый оскол, бр, 12345, Му Рьян Мар'));
+}, 500)
