@@ -9,10 +9,11 @@
 [Макет](https://raw.githubusercontent.com/tadatuta/blc/gh-pages/original2.png) or [Макет](/2018_front/2B/original2.png)
 
 При оценке решения мы учитываем количество изменённых символов в исправленном варианте по отношению к исходному файлу (чем меньше, тем лучше).
+
 Обратите внимание, ваше решение будет тестироваться в браузере **Google Chrome 69**.
 
 **Примечания**
 
 >Вердикт RE означает, что отправленное решение неверно.
 
-[Скачать условие задачи](https://contest.yandex.ru/hiring/contest/10824/download/2B/) or [Скачать условие задачи](/2018_front/2B/problem2.html)
+[Скачать условие задачи](https://contest.yandex.ru/hiring/contest/10824/download/2B/) или [Скачать условие задачи](/2018_front/2B/problem2.html)
