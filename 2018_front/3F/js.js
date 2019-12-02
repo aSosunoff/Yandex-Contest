@@ -67,8 +67,6 @@ const renderUser = (datas) => {
  * @return {string}
  */
 function getMarkdown(data){
-    if(!data) return '';
-    
     let [user, package] = detour(data, {
         user: (e, fn) => {
             fn(e.maintaining);
