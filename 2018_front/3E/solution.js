@@ -2,43 +2,67 @@
 //     return Array.prototype.slice.call(document.getElementsByClassName('key'));
 // }
 
-function getNotes(){
-//     let buttons = {
-//         "C1": 0, "D1 flat": 1,
-//         "D1": 2, "E1 flat": 3,
-//         "E1": 4,
-//         "F1": 5, "G1 flat": 6,
-//         "G1": 7, "A1 flat": 8,
-//         "A1": 9, "H1 flat": 10,
-//         "H1": 11,
-//         "C2": 12, "D2 flat": 13,
-//         "D2": 14, "E2 flat": 15,
-//         "E2": 16,
-//         "F2": 17, "G2 flat": 18,
-//         "G2": 19, "A2 flat": 20,
-//         "A2": 21, "H2 flat": 22,
-//         "H2": 23
-//     };
+function getColor() {
+	let keys = document.querySelectorAll(".keys .key");
+	let keysArr = Array.from(keys);
+	let keyNewObjects = keysArr.map(e => {
+		let backColor = getComputedStyle(e).backgroundColor;
+		return {
+			color: backColor,
+			el: e
+		};
+	});
 
-//     return Array.prototype.slice.call(document.querySelectorAll('.game .target .symbol:not(.separator)'))
-//         .map(e => {
-//             let key = [e.classList[1], e.classList[2]].filter(f => f).join(' ');
-//             return buttons[key];
-//         });
-// }
+	let keysColorIdentity = keyNewObjects.reduce((r, e) => {
+		if (!r.length) return [e];
 
-// const keyArray = getKeyboard();
+		return r.map(m => m.color).includes(e.color) ? r : [...r, e];
+	}, []);
 
-// const notes = getNotes();
+	let table = document.querySelectorAll(".keys")[0];
 
-// const run = () => {
-//     let el = keyArray[notes.shift()];
+	return {
+		nameTable: table.classList[1],
+		keysColorIdentity
+	};
+}
 
-//     el.dispatchEvent(new Event('click'));
-//     if(notes.length)
-//         setTimeout(run, 100);
+const manager = (function() {
+    let _keysColorIdentity = {};
+    
+	const _clear = color => {
+		for (let [key, value] of Object.entries(_keysColorIdentity)) {
+            let _newColors = value
+                .reduce((r, e) => {
+                    return e.color != color ? [...r, e] : [...r];
+                }, []);
+                
+            _keysColorIdentity[key] = _newColors;
+		}
+    };
+    
+	return {
+		getColor: keysColorIdentity => {
+			if (!(keysColorIdentity.nameTable in _keysColorIdentity)) {
+				_keysColorIdentity[keysColorIdentity.nameTable] = keysColorIdentity.keysColorIdentity;
+			}
+
+			let color = _keysColorIdentity[keysColorIdentity.nameTable].pop();
+			_clear(color);
+			return color;
+		}
+	};
+})();
+
+let d = [];
+
+const run = () => {
+    const keysColorIdentity = manager.getColor(getColor());
+    d.push(keysColorIdentity.color);
+	debugger;
+	keysColorIdentity.el.dispatchEvent(new Event("click"));
+	//if (notes.length)
+	setTimeout(run, 1000);
 };
 
-window.onload = function() {
-    //run();
-}
+run();
