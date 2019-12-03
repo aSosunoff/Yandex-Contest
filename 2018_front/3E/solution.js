@@ -1,7 +1,3 @@
-// function getKeyboard(){
-//     return Array.prototype.slice.call(document.getElementsByClassName('key'));
-// }
-
 function getColor() {
 	let keys = document.querySelectorAll(".keys .key");
 	let keysArr = Array.from(keys);
