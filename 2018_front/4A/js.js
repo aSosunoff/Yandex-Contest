@@ -2,7 +2,7 @@
 function solve(inputString){
     if(!inputString) return null;
 
-    let spaceCode = '[GHKLMNOPQRSTU]\\d{3}';
+    let spaceCode = '[GHKLMNOPQRSTU][3-8]{3}';
     
     let departamentCode = '[BT]',
     departmentSubCodeBio = '[CKMB][GJP]',
