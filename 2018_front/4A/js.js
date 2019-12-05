@@ -9,7 +9,7 @@ function solve(inputString){
     departmentSubCodeTechno = '[ORS][J8ME]',
     depBioOrTechno = `(?:(?<=B)${departmentSubCodeBio}|${departmentSubCodeTechno})`;
 
-    let randomNumber = '[0-9A-Y]{1,24}';
+    let randomNumber = '[1-9A-Y][0-9A-Y]{0,23}';
     let lineClose = 'Z';
 
     let validLineArr = [
@@ -28,7 +28,7 @@ function solve(inputString){
                 return !r ? `(${e})` : `${r}(${e})` 
             }, '');
 
-        let data = inputString.match(`^${rule}$`);
+        let data = inputString.match(new RegExp(`^${rule}$`));
 
         if(data){
             let preArr = Array.from(data).slice(1);
