@@ -2,25 +2,21 @@
 function solve(inputString){
     if(!inputString) return null;
 
-    let _separator_ = '\\s*,\\s*';
-    let _word = '[А-Я][а-я]{2,7}',
-    _digit = '[0-9~§]',
-    _name = 'Сёб|Рёб|Моб|Сян|Рян|Ман',
-    _surname = 'Сё|Рё|Мо|Ся|Ря|Ма|Сю|Рю|Му';
+    let spaceCode = '[GHKLMNOPQRSTU]\\d{3}';
     
-    let _a = `${_word}(?:[ -]${_word})?`,
-    _b = `(?:${_digit}{3})|(?:${_digit}{2}-${_digit}{2})`,
-    _c = `(?:${_surname}) (?:${_name})`;
+    let departamentCode = '[BT]',
+    departmentSubCodeBio = '[CKMB][GJP]',
+    departmentSubCodeTechno = '[ORS][J8ME]',
+    depBioOrTechno = `(?:(?<=B)${departmentSubCodeBio}|${departmentSubCodeTechno})`;
+
+    let randomNumber = '[0-9A-Y]{1,24}';
+    let lineClose = 'Z';
 
     let validLineArr = [
         {
-            validate: [_a, _a, _a, _b, _c],
-            line: [0, 1, 2, 3, 4]
-        },
-        {
-            validate: [_a, _a, _c],
-            line: [0, 1, null, null, 2]
-        },
+            validate: [spaceCode, departamentCode, depBioOrTechno, randomNumber, lineClose],
+            line: [0, 1, 2, 3]
+        }
     ];
 
     let resultArray = [];
@@ -29,7 +25,7 @@ function solve(inputString){
         let rule = valid
             .validate
             .reduce((r, e) => { 
-                return !r ? `(${e})` : `${r}${_separator_}(${e})` 
+                return !r ? `(${e})` : `${r}(${e})` 
             }, '');
 
         let data = inputString.match(`^${rule}$`);
@@ -40,7 +36,7 @@ function solve(inputString){
             break;
         }
     };
-
+    
     if(resultArray.every(e => e == null))
         return null;
 
@@ -52,16 +48,10 @@ setTimeout(() => {
 }, 500);
 
 let date = [
-    ['Старый, Оскол-Бравый, Му Рян1', null],
-    ['Старый Оскол, Бравый, Слон, ~2-3§, Му Рян', ['Старый Оскол', 'Бравый', 'Слон', '~2-3§', 'Му Рян']],
-    ['Старый Оскол, Бравый, Слон, 12-34, Му Рян', ['Старый Оскол', 'Бравый', 'Слон', '12-34', 'Му Рян']],
-    ['Старый Оскол, Бравый, Слон, ~~3, Му Рян', ['Старый Оскол', 'Бравый', 'Слон', '~~3', 'Му Рян']],
-    ['Старый Оскол, Бравый, Слон, 123, Му Рян', ['Старый Оскол', 'Бравый', 'Слон', '123', 'Му Рян']],
-    ['Старый Оскол, Бравый, Му Рян', ['Старый Оскол', 'Бравый', null, null, 'Му Рян']],
-    ['Старый-Оскол, Бравый, Му Рян', ['Старый-Оскол', 'Бравый', null, null, 'Му Рян']],
-    ['Старый, Оскол-Бравый, Му Рян', ['Старый', 'Оскол-Бравый', null, null, 'Му Рян']],
-    ['Старый оскол, бр, 12345, Му Рьян Мар', null],
-    ['Старыйоскол, 1-34, МуРен', null],
+    ['O464YR849BM182BDZ', null],
+    ['G333TR81Z', ["G333","T","R8","1"],
+    ['O464TR849BM182BDZ', ["O464", "T", "R8", "49BM182BD"]],
+    ['U345BMG123456789ABCDEFZ', ["U345", "B", "MG", "123456789ABCDEF"]],]
 ];
 
 function test(){
