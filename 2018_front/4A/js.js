@@ -50,6 +50,7 @@ setTimeout(() => {
 let date = [
     ['O464YR849BM182BDZ', null],
     ['G333TR81Z', ["G333","T","R8","1"],
+    ['G333tR81Z', null],
     ['O464TR849BM182BDZ', ["O464", "T", "R8", "49BM182BD"]],
     ['U345BMG123456789ABCDEFZ', ["U345", "B", "MG", "123456789ABCDEF"]],]
 ];
@@ -73,3 +74,7 @@ function test(){
 
     }
 }
+
+;(function(_w){
+
+})(window);
