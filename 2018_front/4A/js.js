@@ -76,5 +76,24 @@ function test(){
 }
 
 ;(function(_w){
-
+    let testTable = new (class TestTable{
+        constructor(_w){
+            this._doc = _w.document;
+        }
+        start(){
+            let body = this._doc.querySelector('body');
+            body.appendChild(this.createElement('div', 'test-table'));
+        }
+        createElement(tagName, ...className){
+            let e = this._doc.createElement(tagName);
+            e.classList.add(...className);
+            e.addEventListener('click', this.click.bind(this, e));
+            return e;
+        }
+        click(e,r,t){
+            debugger;
+            console.log(e);
+        }
+    })(_w);
+    testTable.start();
 })(window);
