@@ -16,31 +16,33 @@ function calcFontVariationSettings(container, str, min, max) {
         return null;
 
     const check = size => {
-        container.style.setProperty('word-spacing', `${size}px`, 'important');
+        container.style.setProperty('font-variation-settings', `'wdth' ${size}`, 'important');
         const {height, width} = container.getBoundingClientRect();
         return container.scrollWidth <= width && container.scrollHeight <= height;
     };
-
+    
     container.textContent = str;
 
-    // if(!check(min)) return null;
-    // if(check(max)) return max;
+    if(!check(min)) return null;
+    if(check(max)) return max;
 
-    // const getNewWordSpacing = (l, r) => Math.round((r + l) / 2);
+    const getVariation = (l, r) => Math.round((r + l) / 2);
 
-    // let l = min;
-    // let r = max;
-    // while(l < r - 1){
-    //     let m = getNewWordSpacing(l, r);
+    let l = min;
+    let r = max;
+    while(l < r - 1){
+        debugger;
+        let m = getVariation(l, r);
 
-    //     if(check(m))
-    //         l = m;
-    //     else
-    //         r = m;
-    // }
+        if(check(m))
+            l = m;
+        else
+            r = m;
+    }
 
-    // return l;
+    return l;
 }
 
-
-calcFontVariationSettings(document.getElementById("container"), 'DEMO', 0, 150);
+setTimeout(() => {
+    console.log(calcFontVariationSettings(document.getElementById("container"), 'DEMO', 0, 150));
+}, 500);

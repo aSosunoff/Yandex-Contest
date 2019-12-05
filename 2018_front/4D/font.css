@@ -4,9 +4,11 @@
 @font-face {
 	font-family: "Gingham";
 
-    src: url("Gingham/Gingham.ttf") format("truetype"),
+	src: url('Gingham/Gingham.ttf') format('truetype-variations'),
+		url('Gingham/Gingham.ttf') format("truetype"),
 		url("Gingham/Gingham.woff") format("woff"),
-		url("Gingham/Gingham.woff2") format("woff2");
+		url('Gingham/Gingham.woff2') format('woff2-variations'),
+		url('Gingham/Gingham.woff2') format("woff2");
 
 	font-weight: normal;
 
@@ -15,4 +17,8 @@
 
 *{
     font-family: Gingham;
+}
+
+#container{
+	/* font-variation-settings: 'wdth' 0; */
 }
