@@ -29,36 +29,43 @@ const sort = (nameField) => {
     return (a, b) => a[nameField] < b[nameField] ? -1 : (a[nameField] == b[nameField] ? 0 : 1); 
 };
 
-// const getPackageArr = (data) => {
-//     data.deps = data.deps.sort(sort('name'));
-//     data.requiredBy = data.requiredBy.sort(sort('name'));
-//     return data;
-// };
+const getBandArr = (data) => {
+    data.friends = data.friends.sort(sort('name'));
+    /*data.genres = data.genres.sort(sort('name')).map(getGanreArr);*/
+    return data;
+};
 
-// const getLine = (data) => `${
-//     data.name
-// }${
-//     data.maintainer ? `, @${data.maintainer.name}` : ''
-// }${
-//     data.deps.length ? `; использует: ${data.deps.map(m => m.name).join(' ')}` : ''
-// }`;
+const getGanreArr = (data) => {
+    data.bands = data.bands.sort(sort('name')).map(getBandArr);
+    data.subgenres = data.subgenres.sort(sort('name')).map(getGanreArr);
+    return data;
+};
 
-// const renderPackage = (datas) => {
-//     let r = '';
-//     for(let data of datas){
-//         r += `\n- ${getLine(data)}`;
-//     }
-//     return r;
-// }
+const getLine = (data) => `${
+    data.name
+}${
+    data.bands.length ? `: ${data.bands.map(m => m.name).join(', ')}` : ''
+}`;
 
-// const renderUser = (datas) => {
-//     let r = '';
-//     for(let data of datas){
-//         r += `\n- ${data.name}`;
-//         r += `${data.maintaining.map(m => `\n  * ${m.name}`).join('')}`;
-//     }
-//     return r;
-// }
+const renderGanrePackage = (datas, separatorCount = 0) => {
+    let r = '';
+    for(let data of datas){
+        r += `\n${' '.repeat(separatorCount * 2)}- ${getLine(data)}`;
+        if(data.subgenres.length)
+            r += `${renderGanrePackage(data.subgenres, ++separatorCount)}`;
+    }
+    return r;
+}
+
+const renderBand = (datas) => {
+    let r = '';
+    for(let data of datas){
+        r += `\n- ${data.name}`;
+        if(data.friends.length)
+            r += `, друзья: ${data.friends.map(m => m.name).join(', ')}`;
+    }
+    return r;
+}
 
 
 /**
@@ -67,38 +74,34 @@ const sort = (nameField) => {
  * @return {string}
  */
 function getMarkdown(data){
-    // let [user, package] = detour(data, {
-    //     user: (e, fn) => {
-    //         fn(e.maintaining);
-    //     },
-    //     package: (e, fn) => {
-    //         fn(e.maintainer);
-    //         fn(e.deps);
-    //         fn(e.requiredBy);
-    //     }
-    // });
+    let [genre, band] = detour(data, {
+        genre: (e, fn) => {
+            fn(e.bands);
+            fn(e.subgenres);
+            fn(e.parent);
+        },
+        band: (e, fn) => {
+            fn(e.friends);
+            fn(e.genres);
+        }
+    });
     
-    // user = user.sort(sort('name')).map(g => {
-    //     g.maintaining = g.maintaining.sort(sort('name')).map(getPackageArr);
-    //     return g;
-    // });
+    genre = genre.filter(e => !e.parent).sort(sort('name')).map(getGanreArr);
 
-    // package = package
-    //     .sort(sort('name'))
-    //     .map(getPackageArr);
+    band = band.sort(sort('name')).map(getBandArr);
 
-    // let result = '';
+    let result = '';
 
-    // if(package.length)
-    //     result += `## Пакеты\n${renderPackage(package)}`;
+    if(genre.length)
+        result += `## Жанры\n${renderGanrePackage(genre)}`;
     
-    // if(package.length && user.length)
-    //     result += `\n\n`;
+    if(genre.length && band.length)
+        result += `\n\n`;
 
-    // if(user.length)
-    //     result += `## Пользователи\n${renderUser(user)}`;
+    if(band.length)
+        result += `## Группы\n${renderBand(band)}`;
 
-    // return result;
+    return result;
 }
 
 // Жанры в памяти
@@ -137,7 +140,11 @@ Band2.friends.push(Band1);
 // С некоторыми — по 2 раза, но это не взаимно
 Band1.friends.push(Band3);
 
+const SubGenre3Sub1 = { type: 'genre', name: '12', bands: [], subgenres: [], parent: null };
+Genre1Sub3.subgenres.push(SubGenre3Sub1);
+SubGenre3Sub1.parent = Genre1Sub3;
+
 // Помнит Коля только про Бритый Гриб :-(
-const lastEdited = Band3;
+const lastEdited = Genre1Sub3;
 
 console.log(getMarkdown(lastEdited));
