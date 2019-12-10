@@ -50,7 +50,7 @@ const getLine = (data) => `${
 const renderGanrePackage = (datas, separatorCount = 0) => {
     let r = '';
     for(let data of datas){
-        r += `\n${' '.repeat(separatorCount * 2)}- ${getLine(data)}`;
+        r += `\n${'  '.repeat(separatorCount)}- ${getLine(data)}`;
         if(data.subgenres.length)
             r += `${renderGanrePackage(data.subgenres, ++separatorCount)}`;
     }
@@ -74,6 +74,9 @@ const renderBand = (datas) => {
  * @return {string}
  */
 function getMarkdown(data){
+    if(!('type' in data && !!~['genre','band'].indexOf(data.type)))
+        return '';
+    
     let [genre, band] = detour(data, {
         genre: (e, fn) => {
             fn(e.bands);
@@ -144,7 +147,13 @@ const SubGenre3Sub1 = { type: 'genre', name: '12', bands: [], subgenres: [], par
 Genre1Sub3.subgenres.push(SubGenre3Sub1);
 SubGenre3Sub1.parent = Genre1Sub3;
 
+const SubGenre3Sub2 = { type: 'genre', name: '123', bands: [], subgenres: [], parent: null };
+SubGenre3Sub1.subgenres.push(SubGenre3Sub2);
+SubGenre3Sub2.parent = SubGenre3Sub1;
+
+const Band4 = { type: 'band', name: 'Жёлтый мох', friends: [], genres: [] };
+
 // Помнит Коля только про Бритый Гриб :-(
 const lastEdited = Genre1Sub3;
 
-console.log(getMarkdown(lastEdited));
+console.log(getMarkdown({}));
